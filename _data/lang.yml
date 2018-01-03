@@ -1,0 +1,39 @@
+en-US:
+   meng:
+      head_card: 
+          rss: "RSS"
+          sitemap: "Sitemap"
+   editor: 
+      content: "Content"
+      frontmatter:
+         name: "Front Matter"
+         title: "Title"
+         date: "Date"
+         categories: "Categories"
+         tags: "Tags"
+         image: "Image"
+      preview: "Preview"
+      download: "Download"
+   lastupdate: 
+      one: "This article was last updated"
+      two: "days ago. Please use caution."
+   readtime: 
+      one: "It takes"
+      two: "minutes to read this article."
+   page:
+      search: "Search"
+   post:
+      continue: "Read more"
+      qrcode: "QR Code"
+      qrcodeContent: "Read this article on other devices"
+      comments_load_button: "Read Comments"
+      tags: "Tags"
+   share:
+      share: "Share "
+      toWeibo: "Share to Weibo"
+      toTwitter: "Share to Twitter"
+      toFacebook: "Share to Facebook"
+      toGoogleplus: "Share to G+"
+      toLinkedin: "Share to Linkedin"
+      toQq: "Share to QQ"
+      toTelegram: "Share to Telegram"
