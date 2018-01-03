@@ -1,124 +1,97 @@
-# BlackDoc
+![](/jekylltheme.jpg)
 
-BlackDoc is a two-column [Jekyll](http://jekyllrb.com) theme that's ideal for websites that require a master-detail layout for viewing of content. It's based on [Poole](http://getpoole.com), the Jekyll butler, and the [Hyde](http://hyde.getpoole.com) theme.
+# Jekyll Theme MDUI
 
-![BlackDoc screenshot](https://raw.githubusercontent.com/karloespiritu/blackdoc/master/public/images/blackdoc-screenshot.jpg)
+> A Jekyll theme based on mdui
 
 ## Contents
 
-- [Features](#features)
-- [Quick Start](#quick-start)
-- [Usage](#usage)
-- [Options](#options)
-  - [Sidebar menu](#sidebar-menu)
-  - [Scrolling sidebar content](#scrolling-sidebar-content)
-  - [Themes](#themes)
-  - [Reverse layout](#reverse-layout)
-- [Development](#development)
-- [Author](#author)
-- [License](#license)
-- [Thanks](#thanks)
+* [General](#general)
+* [Demo](#demo)
+* [Quick start](#quick-start)
+* [Docs](#docs)
+* [TODO](#todo)
+* [Note](#note)
+* [Contributing](#contributing)
+* [Development](#development)
+* [License](#license)
 
-## Features
+## General
 
-* Now compatible with Jekyll 3.x
-* Two-column layout with scrolling sidebar content
-* Ideal for websites that require  master-detail view of content
+[![Version](https://img.shields.io/badge/version-0.5.2-green.svg?style=flat-square)]()
+[![Jekyll](https://img.shields.io/badge/Jekyll-3.5+-green.svg?style=flat-square)](https://jekyllrb.com/)
+[![Gem](https://img.shields.io/gem/dt/jekyll-theme-mdui.svg?style=flat-square)](https://rubygems.org/gems/jekyll-theme-mdui/)
 
-## Quick Start
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/KeJunMao/jekyll-theme-mdui.svg?style=flat-square&label=code%20climate)](https://codeclimate.com/github/KeJunMao/jekyll-theme-mdui/)
+[![Build Status](https://img.shields.io/travis/KeJunMao/jekyll-theme-mdui.svg?style=flat-square)](https://travis-ci.org/KeJunMao/jekyll-theme-mdui)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
 
-Download the zip file or clone the BlackDoc repo.
+[![Author](https://img.shields.io/badge/author-KeJun-blue.svg?style=flat-square)](https://blog.kejun.space)
 
-```bash
-$ git clone git@github.com:karloespiritu/BlackDoc.git mysite
-$ cd mysite
-```
-Make sure you have Ruby 2.0.0 or higher installed.
+## Demo
 
-```bash
-$ ruby --version
-ruby 2.x.x
-```
+[KeJun's Blog](https://blog.kejun.me)
 
-Install bundler and install dependencies.
+## Quick start 
 
-```bash
-$ gem install bundler
-$ bundle install
-```
+[Quick start](http://mdui.kejun.space/#/quickstart)
 
-Build and run your BlackDoc site.
+[快速开始](http://mdui.kejun.space/#/zh-cn/quickstart)
 
-```bash
-$ jekyll serve
-```
+## Docs
 
-## Usage
+[Docs](http://mdui.kejun.space/#/)(!!!Need Help!!!)
 
-BlackDoc is a theme built on top of [Poole](https://github.com/poole/poole), which provides a fully furnished Jekyll setup—just download and start the Jekyll server. See [the Poole usage guidelines](https://github.com/poole/poole#usage) for how to install and use Jekyll.
+[中文文档](http://mdui.kejun.space/#/zh-cn/)
 
+## TODO
 
-## Options
+- [x] Category - Better style
+- [x] Tags - Better style
+- [x] Site style - More custom options
+- [x] Editor
+- [x] Posts - Last update date 
+- [x] Posts - Reading time 
+- [x] Posts - Code highlighting 
+- [x] Meng -  Immersive status bar from image
+- [x] Comment - Add More
+- [ ] Analytics - Add More
+- [ ] Fix many bugs
 
-BlackDoc includes some customizable options, typically applied via classes on the `<body>` element.
+## Note
 
+File Required or Optional:
 
-### Sidebar menu
+|files|Required or Optional|Description|
+|---  |---                 |---        |
+|mainifest.json|Optional   |Is the only file that every WebExtension must contain.See [here](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json).|
+|sw.js|Optional            |Service Workers.See [here](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers).|
+|search.json|Optional|If you use the search page, it is required.|
+|tags.json|Optional|If you use the tags page, it is required.|
+|_data/friends.yml|Optional|If you use the friends page, it is required.|
+|_data/sns.yml|Optional|It is footer sns,if you want used, it is required.|
+|_data/meng.yml|Optional|It is Meng option,if you want used, it is required.|
+|_data/site.yml|Required|It is theme config.|
+|_data/lang.yml|Required|It is language config.|
+|_data/menus.yml|Required|It is site menus config.|
 
-Create a list of nav links in the sidebar by assigning each Jekyll page the correct layout in the page's [front-matter](http://jekyllrb.com/docs/frontmatter/).
+How to use? See Docs.
 
-```
----
-layout: page
-title: About
----
-```
+## Contributing
 
-**Why require a specific layout?** Jekyll will return *all* pages, including the `atom.xml`, and with an alphabetical sort order. To ensure the first link is *Home*, we exclude the `index.html` page from this list by specifying the `page` layout.
+Bug reports and pull requests are welcome on GitHub at https://github.com/KeJunMao/jekyll-theme-mdui. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
+## Development
 
-### Scrolling sidebar content
+To set up your environment to develop this theme, run `bundle install`.
 
-By default, BlackDoc includes a scrolling sidebar that will display your markdown files in alphabetical order.
+Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
 
-### Themes
-
-BlackDoc ships with eight optional themes based on the [base16 color scheme](https://github.com/chriskempson/base16). Apply a theme to change the color scheme (mostly applies to sidebar and links).
-
-To use a theme, add anyone of the available theme classes to the `<body>` element in the `default.html` layout, like so:
-
-```html
-<body class="theme-base-08">
-  ...
-</body>
-```
-
-To create your own theme, look to the Themes section of [included CSS file](https://github.com/karloespiritu/blackdoc/blob/master/public/css/blackdoc.css). Copy any existing theme (they're only a few lines of CSS), rename it, and change the provided colors.
-
-### Reverse layout
-
-![BlackDoc reverse screenshot](https://raw.githubusercontent.com/karloespiritu/BlackDoc/master/public/images/reverse-screenshot.png)
-
-BlackDoc's page orientation can be reversed with a single class.
-
-```html
-<body class="layout-reverse">
-  ...
-</body>
-```
-
-## Author
-
-**Karlo Espiritu**
-- <https://github.com/karloespiritu>
-- <https://twitter.com/karloespiritu>
+When your theme is released, only the files in `_layouts`, `_includes`, and `assets` tracked with Git will be released.
 
 ## License
 
-Open sourced under the [MIT license](LICENSE.md).
+[![license](https://img.shields.io/github/license/KeJunMao/jekyll-theme-mdui.svg?style=flat-square)](https://github.com/KeJunMao/jekyll-theme-mdui/blob/master/LICENSE.txt)
 
-\m/
+The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-## Thanks
-
-Thanks to [@mdo](https://twitter.com/mdo) for creating the awesome [Poole](http://getpoole.com) project.
