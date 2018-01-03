@@ -1,7 +1,7 @@
 title:  # Meng title
   switch: true # Meng title switch
-  visible: "(*´∇｀*) 被发现啦~" # State is visible text
-  hidden:  "(つェ⊂)看不到我~" # State is hidden text
+  visible: "herrfeder documentation" # State is visible text
+  hidden: "hidden" # State is hidden text
   with_default_title: true # with default title
   reset_time: 1000 # If state is visible , reset default title times(ms)
 
@@ -61,7 +61,7 @@ music_player:
       pic: 'http://img4.kuwo.cn/star/starheads/240/72/35/3484765923.jpg'
 
 head_card:
-  switch: true
+  switch: false
   left_img: "https://ooo.0o0.ooo/2017/06/19/5947b272d418b.jpg"
   left_text: "『 · 如果真爱有颜色 』"
   right_img: "https://ooo.0o0.ooo/2017/06/08/5939484dc618e.png"
