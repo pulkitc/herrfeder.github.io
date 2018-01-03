@@ -1,24 +1,23 @@
-title: "Jekyll-Theme-MDUI"
-description: "A Jekyll theme based on MDUI"
-url: 
-baseurl: ""
-author: "KeJun"
-paginate: 5
-paginate_path: "/blog/page:num/"
+# Site settings
+title: "gjuniioor"
+bye_message: "Thx!"
+baseurl: "/clyell/"
+url: "https://gjuniioor.github.io"
+disqus: gjuniioor
 
-plugins:
-  - jekyll-sitemap
-  - jekyll-paginate
-  - jekyll-feed
+# Header settings
+nick: "gjuniioor"
+mail:
+    domain: "protonmail"
+    ext: "ch"
+source_code:
+    server: "github.com"
+    nick: "gjuniioor"
+blog:
+    server: "wordpress.com"
+    nick: "gjuniioor"
+fingerprint_key: "5E12 9ABC C2A9 564B C048  2DF9 D327 0D10 BC71 CF75"
 
-exclude:
-  - package.json
-  - node_modules
-  - gulpfile.js
-  - Gemfile
-  - Gemfile.lock
-  - jekyll-theme-mdui.gemspec
-  - LICENSE.txt
-  - README.md
-  - vendor
-  - docs
+# Build settings
+markdown: kramdown
+permalink: /:categories/:title/
