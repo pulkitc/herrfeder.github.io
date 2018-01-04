@@ -11,7 +11,7 @@ cursor: # Meng cursor
   pointer_url: "https://ooo.0o0.ooo/2017/06/12/593ea3612fd77.png" # State is pointer style
 
 console: # Meng console info
-  switch: true # Meng console info switch
+  switch: false # Meng console info switch
   theme_info: true # output theme info
   text: "Copyright © 2017 Jekyll-Theme-MDUI" # text
   color: "#fff" # text color
