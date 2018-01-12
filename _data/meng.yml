@@ -1,7 +1,7 @@
 title:  # Meng title
   switch: true # Meng title switch
   visible: "herrfeder documentation" # State is visible text
-  hidden: "hidden" # State is hidden text
+  hidden: "herrfeder documentation" # State is hidden text
   with_default_title: true # with default title
   reset_time: 1000 # If state is visible , reset default title times(ms)
 
@@ -12,8 +12,8 @@ cursor: # Meng cursor
 
 console: # Meng console info
   switch: false # Meng console info switch
-  theme_info: true # output theme info
-  text: "Copyright © 2017 Jekyll-Theme-MDUI" # text
+  theme_info: false # output theme info
+  text: "" # text
   color: "#fff" # text color
   background: "#448aff" # background color
 
@@ -61,8 +61,8 @@ music_player:
       pic: 'http://img4.kuwo.cn/star/starheads/240/72/35/3484765923.jpg'
 
 head_card:
-  switch: false
+  switch: true
   left_img: "https://ooo.0o0.ooo/2017/06/19/5947b272d418b.jpg"
-  left_text: "『 · 如果真爱有颜色 』"
+  left_text: "herrfeder documentation"
   right_img: "https://ooo.0o0.ooo/2017/06/08/5939484dc618e.png"
   offset_level: 2

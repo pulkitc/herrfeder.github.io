@@ -1,9 +1,9 @@
-title: "Jekyll-Theme-MDUI"
-description: "A Jekyll theme based on MDUI"
+title: "H4ck and that"
+description: "Blog for herrfeder"
 url: 
 baseurl: ""
-author: "KeJun"
-paginate: 5
+author: "herrfeder"
+paginate: 10
 paginate_path: "/blog/page:num/"
 
 plugins:
