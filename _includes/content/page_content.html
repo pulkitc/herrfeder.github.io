@@ -1,9 +1,21 @@
 <style>
 
+/*img + em {
+	position: relative;
+	background-color: #dcdcdc;
+	text-align: center;
+
+}
+
+img {
+	display: block;
+	margin: 0 auto;
+}
+*/
 .k-post-media {
     display:block
     cursor: pointer;
-    max-height: 245px;
+    max-height: 345px;
     min-height: 245px;
     background-position: 50% 50%;
     background-size: cover;
@@ -71,7 +83,6 @@
                     {% endif %}
                     <div class="mdui-card-header-subtitle k-page-date" date="{% if page.lastupdate != null %}{{page.lastupdate | date: "%b %-d, %Y"}}{% else %}{{page.date | date: "%b %-d, %Y"}}{% endif %}">{{ page.date | date: "%b %-d, %Y" }}</div>
                 </div>
-                {% include content/component/readtime.html %}
                 {% include content/component/lastupdate.html %}
                 <div class="mdui-card-content mdui-typo">
                     {{ content }}

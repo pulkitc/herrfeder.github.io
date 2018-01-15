@@ -1,7 +1,7 @@
 <style>
     #k-toc-card{
         background-color: transparent;
-        width: 260px;
+        width: 500px;
         list-style: none;
         padding: 0;
     }
@@ -10,29 +10,29 @@
         padding: 0px;
     }
     .pin-top {
-        margin-top: 245px;
+        margin-top: 100px;
     }
     .pinned {
         position: fixed;
     }
     #k-toc-card li{
-        max-width: 300px;
+        max-width: 500px;
         min-width: 200px;
     }
     #k-toc-card a{
             text-align: left;
-    color: black;
+    color: #2f4f4f;
     display: block;
     width: 100%;
     text-decoration: none;
     position: relative;
     min-width: 88px;
-    height: 36px;
+    height: 25px;
     box-sizing: border-box;
     padding: 0 16px;
     margin: 0;
     overflow: hidden;
-    font-size: 14px;
+    //font-size: 15px;
     font-weight: 500;
     line-height: 36px;
     text-transform: uppercase;
@@ -61,6 +61,14 @@
     border-left: 3px solid #448aff;
     background-color: rgba(0, 0, 0, .2);
 }
+
+    #k-toc-card .toc-h2 {
+	    font-size: 15px;
+    }
+    #k-toc-card .toc-h3 {
+	    font-size: 10px;
+            text-indent: 6px;
+    }
 </style>
 <div id="k-toc-card" class="mdui-card mdui-shadow-0">
     <div id="toc"></div>
@@ -71,7 +79,7 @@
 </script>
 <script>
     $('#toc').toc({
-        'selectors': 'h2',
+	'selectors': 'h2,h3',
         'prefix': 'toc',
         'highlightOffset': 64
     });

@@ -3,6 +3,18 @@
 [
   
     {
+      "id"    : "ARM",
+      "post": [
+          
+         {
+            "title": "Hacking An IPCamera Part1",
+            "excerpt": "",
+            "url": "/embeddedsec/2017/10/19/Hacking-A-IP-Camera.html"
+         } 
+      ]
+    } ,
+  
+    {
       "id"    : "hacking",
       "post": [
           
@@ -10,6 +22,36 @@
             "title": "SANS Holiday Hacking Challenge",
             "excerpt": "",
             "url": "/ctf/2018/01/04/SANS-Holiday-Hacking-Challenge-2017.html"
+         } ,
+      
+         {
+            "title": "Hacking An IPCamera Part1",
+            "excerpt": "",
+            "url": "/embeddedsec/2017/10/19/Hacking-A-IP-Camera.html"
+         } 
+      ]
+    } ,
+  
+    {
+      "id"    : "hardware",
+      "post": [
+          
+         {
+            "title": "Hacking An IPCamera Part1",
+            "excerpt": "",
+            "url": "/embeddedsec/2017/10/19/Hacking-A-IP-Camera.html"
+         } 
+      ]
+    } ,
+  
+    {
+      "id"    : "iot",
+      "post": [
+          
+         {
+            "title": "Hacking An IPCamera Part1",
+            "excerpt": "",
+            "url": "/embeddedsec/2017/10/19/Hacking-A-IP-Camera.html"
          } 
       ]
     } ,

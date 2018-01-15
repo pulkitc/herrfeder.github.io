@@ -1,0 +1,30 @@
+<div class="image-container">
+{% if include.img2 %}
+	<div class="image-wrapper-double">
+	<a href="{{ include.url }}" title="{{ include.title }}" target="_blank">
+	<img class="image1" src="{{ include.img }}" alt="{{ include.title }}"/>
+	</a>
+	{% if include.caption %}
+	<p class="image-caption">{{ include.caption }}</p>
+	{% endif %}
+	</div>
+	<div class="image-wrapper-double">
+	<a href="{{ include.url2 }}" title="{{ include.title2 }}" target="_blank">
+	<img class="image2" src="{{ include.img2 }}" alt="{{ include.title2 }}"/>
+	</a>
+	{% if include.caption2 %}
+	<p class="image-caption">{{ include.caption2 }}</p>
+	{% endif %}
+	</div>
+{% else %}	
+<div class="image-wrapper-single">
+    <a href="{{ include.url }}" title="{{ include.title }}" target="_blank">
+	<img class="image" src="{{ include.img }}" alt="{{ include.title }}"/>
+    </a>
+    {% if include.caption %}
+	<p class="image-caption">{{ include.caption }}</p>
+    {% endif %}
+
+</div>
+{% endif %}
+</div>
