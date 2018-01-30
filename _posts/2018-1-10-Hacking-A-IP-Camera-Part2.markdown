@@ -4,8 +4,12 @@ title: Hacking An IPCamera Part2
 date: 2018-1-10 0:0:0 +0800
 categories: embeddedsec
 tags: iot hacking hardware ARM
-img:  
+img: "" 
 ---
+
+* 
+{:toc}
+
 
 As I assume, that the npc binary holds the gSoup service, I will try to emulate it for easier debugging and reversing. 
 Trying to emulate the npc service:
