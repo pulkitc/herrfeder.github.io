@@ -15,9 +15,9 @@ img: assets/images/sansholidayhack2017title.png
 
 I will cut the lovely story behind the hacking tasks short. The homebase of Santa Clause is threatened by Giant Snowballs. Someone or something is throwing these snowballs onto the peaceful christmastown and you have to find out what's going on. To get some hints you have to solve some terminal challenges. That are web emulated shells with a given task. For solving these tasks one of the busy christmals elves will give you hints for the main tasks.
 
-## Terminal Challenges
+## 1 Terminal Challenges
 
-### Isit42 (Overwrite C-Functions with Preload)  Wunorse Openslae
+### Isit42 (Overwrite C-Functions with Preload) Wunorse Openslae
 
 Opening the Terminal will welcome you with the description for the challenge:
 
@@ -32,7 +32,7 @@ total 88
 ```
 
 There is a file given that includes the important parts of the binary:
-```C
+```c
 #include <stdio.h>
 // DATA CORRUPTION ERROR
 // MUCH OF THIS CODE HAS BEEN LOST
@@ -57,7 +57,7 @@ int main() {
 }
 ```
 With the hint from [SANS Blog](https://pen-testing.sans.org/blog/2017/12/06/go-to-the-head-of-the-class-ld-preload-for-the-win) it was obvious that I can use `LD_PRELOAD` to overwrite standard libc functions. overwrite_getrand.c :
-```C
+```c
 #include <stdio.h>
 int rand() {
 return 4138;
@@ -287,8 +287,8 @@ select title,id from songs where id=392;
 Stairway to Heaven|392
 ```
 
-## Apache Struts Server
-Task: 2) Investigate the Letters to Santa application at https://l2s.northpolechristmastown.com. What is the topic of The Great Book page available in the web root of the server? What is Alabaster Snowball's password?
+## 2 Apache Struts Server
+Task: 2) Investigate the Letters to Santa application at ![Letter_2_Santa_Web_App](https://l2s.northpolechristmastown.com). What is the topic of The Great Book page available in the web root of the server? What is Alabaster Snowball's password?
 
 Sparkle Redberry gives a lot of hints about this tasks. It's very important to get this because all the other servers are only accessible internally over this one.
 We can summarize the hints from Sparkle:
@@ -376,9 +376,11 @@ $ cat opt/apache-tomcat/webapps/ROOT/WEB-INF/classes/org/demo/rest/example/Order
             final String password = "stream_unhappy_buy_loss";   
 	    ...
 ```
-## Network Reconnaisance
+## 3 Network Reconnaisance & SMB Server
 
 Task: 3) The North Pole engineering team uses a Windows SMB server for sharing documentation and correspondence. Using your access to the Letters to Santa server, identify and enumerate the SMB file-sharing server. What is the file server share name?
+
+Therefore my first move was to scan the whole subnet:
 
 ```bash
 nmap 10.142.0.0/24 
@@ -430,6 +432,17 @@ PORT     STATE SERVICE
 3000/tcp open  ppp
 ```
 
+The scan from the internal network reveals some machines but none with a open SMB port 445.
+The elf Holly Evergreen provided some hints for this challenge:
+- Use the `-PS` flag of nmap to do TCP Syn Scan on specific ports
+- Alabaster Snowball uses one strong password and uses it for multiple services
+- Use ssh portforwarding to work from your machine into the internal network
+- Use `smbclient` to communicate with SMB fileshare from linux
+
+Nmap uses the `-PS` flag by default but only for port 443. When the desired machine doesn't respond to ICMP probes in addition it won't be detectable without custom nmap flags.
+Apply this hint to the subnet scan:
+
+```bash
 nmap -PS445 10.142.0.0/24
 
 Nmap scan report for hhc17-smb-server.c.holidayhack2017.internal (10.142.0.7)
@@ -440,6 +453,9 @@ PORT     STATE SERVICE
 139/tcp  open  netbios-ssn
 445/tcp  open  microsoft-ds
 3389/tcp open  ms-wbt-server
+```
+
+
 
 ## Windows SMB Server
 
