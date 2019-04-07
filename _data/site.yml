@@ -1,5 +1,5 @@
 head: 
-   favicon: "https://ooo.0o0.ooo/2017/05/27/59294212bc16e.png" #  the favicon
+   favicon: "/assets/images/herrfeder_avatar.png" #  the favicon
    high_res_favicon: "https://ooo.0o0.ooo/2017/06/08/5939484dc618e.png" #  the favicon using high quality format
    apple_touch_icon: "https://ooo.0o0.ooo/2017/06/08/5939484dc618e.png" # the iOS Home button icon
    keywords: "iot sdr django python" #  the site keywords
@@ -27,7 +27,7 @@ sns_share: # SNS Share Switch
    facebook: false
    googleplus: false
    weibo: false
-   linkedin: false
+   linkedin: true
    qq: false
    telegram: true
   
