@@ -13,7 +13,7 @@ import pandas as pd
 import numpy as np
 ```
 
-# Assessing
+## Assessing
 
 
 ```python
@@ -241,10 +241,10 @@ Retrieve categorical values based on occurence limit in dataframe:
 
 
 
-# Wrangling
+## Wrangling
 
-## Cleaning
-### Duplicates and NaN values
+### Cleaning
+#### Duplicates and NaN values
 
 Identify duplicated and null values in address column:
 
@@ -321,9 +321,9 @@ Remove these values:
 clean_df = wrangling_df[~((wrangling_df.address.duplicated()) & wrangling_df.address.notnull())].head(1)
 ```
 
-## Remove Columns/Values
+### Remove Columns/Values
 
-### Drop
+#### Drop
 
 Drop rows with NaN values depending on subset of columns:
 
@@ -365,9 +365,9 @@ wrangling_df.drop(columns=['contact','birthdate']).shape
 
 
 
-## Create Columns
+### Create Columns
 
-### Categorical Column
+#### Categorical Column
 
 We can create a categorical column that will only allow these values to insert:
 
@@ -375,92 +375,6 @@ We can create a categorical column that will only allow these values to insert:
 ```python
 wrangling_df['illness'].index
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    KeyError                                  Traceback (most recent call last)
-
-    /opt/conda/lib/python3.6/site-packages/pandas/core/indexes/base.py in get_loc(self, key, method, tolerance)
-       3077             try:
-    -> 3078                 return self._engine.get_loc(key)
-       3079             except KeyError:
-
-
-    pandas/_libs/index.pyx in pandas._libs.index.IndexEngine.get_loc()
-
-
-    pandas/_libs/index.pyx in pandas._libs.index.IndexEngine.get_loc()
-
-
-    pandas/_libs/hashtable_class_helper.pxi in pandas._libs.hashtable.PyObjectHashTable.get_item()
-
-
-    pandas/_libs/hashtable_class_helper.pxi in pandas._libs.hashtable.PyObjectHashTable.get_item()
-
-
-    KeyError: 'illness'
-
-    
-    During handling of the above exception, another exception occurred:
-
-
-    KeyError                                  Traceback (most recent call last)
-
-    <ipython-input-14-035e5713d5dc> in <module>
-    ----> 1 wrangling_df['illness'].index
-    
-
-    /opt/conda/lib/python3.6/site-packages/pandas/core/frame.py in __getitem__(self, key)
-       2686             return self._getitem_multilevel(key)
-       2687         else:
-    -> 2688             return self._getitem_column(key)
-       2689 
-       2690     def _getitem_column(self, key):
-
-
-    /opt/conda/lib/python3.6/site-packages/pandas/core/frame.py in _getitem_column(self, key)
-       2693         # get column
-       2694         if self.columns.is_unique:
-    -> 2695             return self._get_item_cache(key)
-       2696 
-       2697         # duplicate columns & possible reduce dimensionality
-
-
-    /opt/conda/lib/python3.6/site-packages/pandas/core/generic.py in _get_item_cache(self, item)
-       2487         res = cache.get(item)
-       2488         if res is None:
-    -> 2489             values = self._data.get(item)
-       2490             res = self._box_item_values(item, values)
-       2491             cache[item] = res
-
-
-    /opt/conda/lib/python3.6/site-packages/pandas/core/internals.py in get(self, item, fastpath)
-       4113 
-       4114             if not isna(item):
-    -> 4115                 loc = self.items.get_loc(item)
-       4116             else:
-       4117                 indexer = np.arange(len(self.items))[isna(self.items)]
-
-
-    /opt/conda/lib/python3.6/site-packages/pandas/core/indexes/base.py in get_loc(self, key, method, tolerance)
-       3078                 return self._engine.get_loc(key)
-       3079             except KeyError:
-    -> 3080                 return self._engine.get_loc(self._maybe_cast_indexer(key))
-       3081 
-       3082         indexer = self.get_indexer([key], method=method, tolerance=tolerance)
-
-
-    pandas/_libs/index.pyx in pandas._libs.index.IndexEngine.get_loc()
-
-
-    pandas/_libs/index.pyx in pandas._libs.index.IndexEngine.get_loc()
-
-
-    pandas/_libs/hashtable_class_helper.pxi in pandas._libs.hashtable.PyObjectHashTable.get_item()
-
-
-    pandas/_libs/hashtable_class_helper.pxi in pandas._libs.hashtable.PyObjectHashTable.get_item()
 
 
     KeyError: 'illness'
@@ -477,85 +391,6 @@ wrangling_df['illness'][0] = "bad"
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    ValueError                                Traceback (most recent call last)
-
-    <ipython-input-16-6eb1b636cf9e> in <module>
-    ----> 1 wrangling_df['illness'][0] = "bad"
-    
-
-    /opt/conda/lib/python3.6/site-packages/pandas/core/series.py in __setitem__(self, key, value)
-        937         # do the setitem
-        938         cacher_needs_updating = self._check_is_chained_assignment_possible()
-    --> 939         setitem(key, value)
-        940         if cacher_needs_updating:
-        941             self._maybe_update_cacher()
-
-
-    /opt/conda/lib/python3.6/site-packages/pandas/core/series.py in setitem(key, value)
-        933                     pass
-        934 
-    --> 935             self._set_with(key, value)
-        936 
-        937         # do the setitem
-
-
-    /opt/conda/lib/python3.6/site-packages/pandas/core/series.py in _set_with(self, key, value)
-        975             if key_type == 'integer':
-        976                 if self.index.inferred_type == 'integer':
-    --> 977                     self._set_labels(key, value)
-        978                 else:
-        979                     return self._set_values(key, value)
-
-
-    /opt/conda/lib/python3.6/site-packages/pandas/core/series.py in _set_labels(self, key, value)
-        992         if mask.any():
-        993             raise ValueError('%s not contained in the index' % str(key[mask]))
-    --> 994         self._set_values(indexer, value)
-        995 
-        996     def _set_values(self, key, value):
-
-
-    /opt/conda/lib/python3.6/site-packages/pandas/core/series.py in _set_values(self, key, value)
-        997         if isinstance(key, Series):
-        998             key = key._values
-    --> 999         self._data = self._data.setitem(indexer=key, value=value)
-       1000         self._maybe_update_cacher()
-       1001 
-
-
-    /opt/conda/lib/python3.6/site-packages/pandas/core/internals.py in setitem(self, **kwargs)
-       3691 
-       3692     def setitem(self, **kwargs):
-    -> 3693         return self.apply('setitem', **kwargs)
-       3694 
-       3695     def putmask(self, **kwargs):
-
-
-    /opt/conda/lib/python3.6/site-packages/pandas/core/internals.py in apply(self, f, axes, filter, do_integrity_check, consolidate, **kwargs)
-       3579 
-       3580             kwargs['mgr'] = self
-    -> 3581             applied = getattr(b, f)(**kwargs)
-       3582             result_blocks = _extend_blocks(applied, result_blocks)
-       3583 
-
-
-    /opt/conda/lib/python3.6/site-packages/pandas/core/internals.py in setitem(self, indexer, value, mgr)
-       1932 
-       1933         check_setitem_lengths(indexer, value, self.values)
-    -> 1934         self.values[indexer] = value
-       1935         return self
-       1936 
-
-
-    /opt/conda/lib/python3.6/site-packages/pandas/core/arrays/categorical.py in __setitem__(self, key, value)
-       1979         # something to np.nan
-       1980         if len(to_add) and not isna(to_add).all():
-    -> 1981             raise ValueError("Cannot setitem on a Categorical with a new "
-       1982                              "category, set the categories first")
-       1983 
-
 
     ValueError: Cannot setitem on a Categorical with a new category, set the categories first
 
@@ -565,14 +400,14 @@ wrangling_df['illness'][0] = "bad"
 wrangling_df['illness'][0] = "intermediate"
 ```
 
-## Rename Columns
+### Rename Columns
 
 
 ```python
 wrangling_df_2 = wrangling_df.copy()
 ```
 
-### Different Methods to add suffix to column names
+#### Different Methods to add suffix to column names
 
 Use __built-in__ pandas functions:
 
@@ -795,9 +630,9 @@ wrangling_df_2.head(1)
 
 
 
-## Change Values
+### Change Values
 
-### Lamdba/Apply Functions
+#### Lamdba/Apply Functions
 
 Using a If-Else function. We have to remember, a lambda function has to generate a return value for every iteration, therefore the else is mandatory:
 
@@ -948,7 +783,7 @@ wrangling_df.head(5)
 
 
 
-### Use dict to change values programmatically
+#### Use dict to change values programmatically
 
 For better performance it's always advisable to use a apply function, instead a for loop:
 
@@ -1114,7 +949,7 @@ wrangling_df.head(5)
 
 
 
-### Normalize, Extrapolate, Interpolate
+#### Normalize, Extrapolate, Interpolate
 
 Normalize each row by the sum of each row:
 
@@ -1221,9 +1056,9 @@ int(m(95))
 
 
 
-## Insert Values
+### Insert Values
 
-### Appending, Concat
+#### Appending, Concat
 
 Append rows to dataframe from noncomplete dict:
 
@@ -1345,7 +1180,7 @@ pd.concat([wrangling_df,new_row], sort=True).reset_index().tail(3)
 
 
 
-### loc
+#### loc
 
 Create masks to insert specific values:
 
@@ -1357,9 +1192,9 @@ column_name = 'height'
 wrangling_df.loc[mask, column_name] = height_mean * 1.5
 ```
 
-## Cut and Seperate
+### Cut and Seperate
 
-### iloc
+#### iloc
 We can extract multiple columns and rows at once by combining iloc and numpy.r_:
 
 
@@ -1375,9 +1210,9 @@ df_cut.shape
 
 
 
-## Merge, Group And Sum Values
+### Merge, Group And Sum Values
 
-### Summarize categorical values
+#### Summarize categorical values
 Find from a list of mutations of all combinations of categorical values where at least 4 are positive:
 
 
@@ -1394,21 +1229,7 @@ for m in all_muts:
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    <ipython-input-34-77d3e42cd332> in <module>
-          1 categories = ["C006_01","C006_02","C006_04","C006_06","C006_07","C006_10"]
-    ----> 2 all_muts = list(itertools.combinations(categories, 4))
-          3 
-          4 f_s = 'is correct'
-          5 result_df = pd.DataFrame()
-
-
-    NameError: name 'itertools' is not defined
-
-
+  
 Sum multiple categorical questions with the same range into one continuous value:
 
 
@@ -1429,19 +1250,7 @@ teacher_practice = merge_categorical(pisa_df,"ST79Q",rating_dict_freq_lesson)
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    <ipython-input-35-94b1e19f7237> in <module>
-         10 rating_dict_freq_lesson = {"Every Lesson":4,"Most Lessons":3,"Some Lessons":2,"Never or Hardly Ever":1,0:0}
-         11 
-    ---> 12 teacher_practice = merge_categorical(pisa_df,"ST79Q",rating_dict_freq_lesson)
-    
-
-    NameError: name 'pisa_df' is not defined
-
-
+ 
 ### Merging
 
 Merging two dataframes depending on multiple keys:
