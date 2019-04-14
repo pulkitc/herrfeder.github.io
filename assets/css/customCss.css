@@ -12,7 +12,7 @@ layout: null
     }
 
     .dataframe-wrapper {
-	overflow: scroll;
+	overflow-x: scroll;
 	}
     
     .dataframe {

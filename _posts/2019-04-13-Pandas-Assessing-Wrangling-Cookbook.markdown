@@ -256,7 +256,7 @@ wrangling_df[((wrangling_df.address.duplicated()) & wrangling_df.address.notnull
 
 
 
-<div class="dataframe-wrapper"
+<div class="dataframe-wrapper">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -421,7 +421,7 @@ wrangling_df_2.head(1)
 
 
 
-<div class="dataframe-wrapper"
+<div class="dataframe-wrapper">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -493,7 +493,7 @@ wrangling_df_2.head(1)
 
 
 
-<div class="dataframe-wrapper"
+<div class="dataframe-wrapper">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -570,7 +570,7 @@ wrangling_df_2.head(1)
 
 
 
-<div class="dataframe-wrapper"
+<div class="dataframe-wrapper">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -645,7 +645,7 @@ wrangling_df.head(5)
 
 
 
-<div class="dataframe-wrapper"
+<div class="dataframe-wrapper">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -811,7 +811,7 @@ wrangling_df.head(5)
 
 
 
-<div class="dataframe-wrapper"
+<div class="dataframe-wrapper">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -962,7 +962,7 @@ df.div(df.sum(axis=1), axis=0)
 
 
 
-<div class="dataframe-wrapper"
+<div class="dataframe-wrapper">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1076,7 +1076,7 @@ pd.concat([wrangling_df,new_row], sort=True).reset_index().tail(3)
 
 
 
-<div class="dataframe-wrapper"
+<div class="dataframe-wrapper">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1295,7 +1295,7 @@ patients_country.unstack(1)
 
 
 
-<div class="dataframe-wrapper"
+<div class="dataframe-wrapper">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1464,7 +1464,7 @@ reg_df[reg_df['test'].apply(regex_filter)]
 
 
 
-<div class="dataframe-wrapper"
+<div class="dataframe-wrapper">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
