@@ -36,127 +36,127 @@ wrangling_df.head()
 
 
 
-<div>
+<div class="dataframe-wrapper">
 <style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+.dataframe tbody tr th:only-of-type {
+vertical-align: middle;
+}
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+.dataframe tbody tr th {
+vertical-align: top;
+}
 
-    .dataframe thead th {
-        text-align: right;
-    }
+.dataframe thead th {
+text-align: right;
+}
 </style>
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>patient_id</th>
-      <th>assigned_sex</th>
-      <th>given_name</th>
-      <th>surname</th>
-      <th>address</th>
-      <th>city</th>
-      <th>state</th>
-      <th>zip_code</th>
-      <th>country</th>
-      <th>contact</th>
-      <th>birthdate</th>
-      <th>weight</th>
-      <th>height</th>
-      <th>bmi</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>female</td>
-      <td>Zoe</td>
-      <td>Wellish</td>
-      <td>576 Brown Bear Drive</td>
-      <td>Rancho California</td>
-      <td>California</td>
-      <td>92390.0</td>
-      <td>United States</td>
-      <td>951-719-9170ZoeWellish@superrito.com</td>
-      <td>7/10/1976</td>
-      <td>121.7</td>
-      <td>66</td>
-      <td>19.6</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>female</td>
-      <td>Pamela</td>
-      <td>Hill</td>
-      <td>2370 University Hill Road</td>
-      <td>Armstrong</td>
-      <td>Illinois</td>
-      <td>61812.0</td>
-      <td>United States</td>
-      <td>PamelaSHill@cuvox.de+1 (217) 569-3204</td>
-      <td>4/3/1967</td>
-      <td>118.8</td>
-      <td>66</td>
-      <td>19.2</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>male</td>
-      <td>Jae</td>
-      <td>Debord</td>
-      <td>1493 Poling Farm Road</td>
-      <td>York</td>
-      <td>Nebraska</td>
-      <td>68467.0</td>
-      <td>United States</td>
-      <td>402-363-6804JaeMDebord@gustr.com</td>
-      <td>2/19/1980</td>
-      <td>177.8</td>
-      <td>71</td>
-      <td>24.8</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>male</td>
-      <td>Liêm</td>
-      <td>Phan</td>
-      <td>2335 Webster Street</td>
-      <td>Woodbridge</td>
-      <td>NJ</td>
-      <td>7095.0</td>
-      <td>United States</td>
-      <td>PhanBaLiem@jourrapide.com+1 (732) 636-8246</td>
-      <td>7/26/1951</td>
-      <td>220.9</td>
-      <td>70</td>
-      <td>31.7</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>male</td>
-      <td>Tim</td>
-      <td>Neudorf</td>
-      <td>1428 Turkey Pen Lane</td>
-      <td>Dothan</td>
-      <td>AL</td>
-      <td>36303.0</td>
-      <td>United States</td>
-      <td>334-515-7487TimNeudorf@cuvox.de</td>
-      <td>2/18/1928</td>
-      <td>192.3</td>
-      <td>27</td>
-      <td>26.1</td>
-    </tr>
-  </tbody>
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>patient_id</th>
+<th>assigned_sex</th>
+<th>given_name</th>
+<th>surname</th>
+<th>address</th>
+<th>city</th>
+<th>state</th>
+<th>zip_code</th>
+<th>country</th>
+<th>contact</th>
+<th>birthdate</th>
+<th>weight</th>
+<th>height</th>
+<th>bmi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>1</td>
+<td>female</td>
+<td>Zoe</td>
+<td>Wellish</td>
+<td>576 Brown Bear Drive</td>
+<td>Rancho California</td>
+<td>California</td>
+<td>92390.0</td>
+<td>United States</td>
+<td>951-719-9170ZoeWellish@superrito.com</td>
+<td>7/10/1976</td>
+<td>121.7</td>
+<td>66</td>
+<td>19.6</td>
+</tr>
+<tr>
+<th>1</th>
+<td>2</td>
+<td>female</td>
+<td>Pamela</td>
+<td>Hill</td>
+<td>2370 University Hill Road</td>
+<td>Armstrong</td>
+<td>Illinois</td>
+<td>61812.0</td>
+<td>United States</td>
+<td>PamelaSHill@cuvox.de+1 (217) 569-3204</td>
+<td>4/3/1967</td>
+<td>118.8</td>
+<td>66</td>
+<td>19.2</td>
+</tr>
+<tr>
+<th>2</th>
+<td>3</td>
+<td>male</td>
+<td>Jae</td>
+<td>Debord</td>
+<td>1493 Poling Farm Road</td>
+<td>York</td>
+<td>Nebraska</td>
+<td>68467.0</td>
+<td>United States</td>
+<td>402-363-6804JaeMDebord@gustr.com</td>
+<td>2/19/1980</td>
+<td>177.8</td>
+<td>71</td>
+<td>24.8</td>
+</tr>
+<tr>
+<th>3</th>
+<td>4</td>
+<td>male</td>
+<td>Liêm</td>
+<td>Phan</td>
+<td>2335 Webster Street</td>
+<td>Woodbridge</td>
+<td>NJ</td>
+<td>7095.0</td>
+<td>United States</td>
+<td>PhanBaLiem@jourrapide.com+1 (732) 636-8246</td>
+<td>7/26/1951</td>
+<td>220.9</td>
+<td>70</td>
+<td>31.7</td>
+</tr>
+<tr>
+<th>4</th>
+<td>5</td>
+<td>male</td>
+<td>Tim</td>
+<td>Neudorf</td>
+<td>1428 Turkey Pen Lane</td>
+<td>Dothan</td>
+<td>AL</td>
+<td>36303.0</td>
+<td>United States</td>
+<td>334-515-7487TimNeudorf@cuvox.de</td>
+<td>2/18/1928</td>
+<td>192.3</td>
+<td>27</td>
+<td>26.1</td>
+</tr>
+</tbody>
 </table>
 </div>
 
@@ -174,7 +174,7 @@ Using List Comprehension and a classical for loop to go over a DataFrame column:
 
 
 
-    ['David', 'David']
+['David', 'David']
 
 
 
@@ -188,7 +188,7 @@ Using pandas __built-in__ iterrows will run much faster, as it won't call the co
 
 
 
-    ['David', 'David']
+['David', 'David']
 
 
 
@@ -204,7 +204,7 @@ By multiplying a boolean with one, we can turn it into a integer and are able to
 
 
 
-    1
+1
 
 
 
@@ -220,7 +220,7 @@ wrangling_df.keys()[-3:].tolist()
 
 
 
-    ['weight', 'height', 'bmi']
+['weight', 'height', 'bmi']
 
 
 
@@ -237,7 +237,7 @@ Retrieve categorical values based on occurence limit in dataframe:
 
 
 
-    [67, 69, 65, 63, 66, 70, 72, 61]
+[67, 69, 65, 63, 66, 70, 72, 61]
 
 
 
@@ -256,7 +256,7 @@ wrangling_df[((wrangling_df.address.duplicated()) & wrangling_df.address.notnull
 
 
 
-<div>
+<div class="dataframe-wrapper"
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -421,7 +421,7 @@ wrangling_df_2.head(1)
 
 
 
-<div>
+<div class="dataframe-wrapper"
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -493,7 +493,7 @@ wrangling_df_2.head(1)
 
 
 
-<div>
+<div class="dataframe-wrapper"
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -570,7 +570,7 @@ wrangling_df_2.head(1)
 
 
 
-<div>
+<div class="dataframe-wrapper"
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -645,7 +645,7 @@ wrangling_df.head(5)
 
 
 
-<div>
+<div class="dataframe-wrapper"
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -811,7 +811,7 @@ wrangling_df.head(5)
 
 
 
-<div>
+<div class="dataframe-wrapper"
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -962,7 +962,7 @@ df.div(df.sum(axis=1), axis=0)
 
 
 
-<div>
+<div class="dataframe-wrapper"
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1076,7 +1076,7 @@ pd.concat([wrangling_df,new_row], sort=True).reset_index().tail(3)
 
 
 
-<div>
+<div class="dataframe-wrapper"
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1295,7 +1295,7 @@ patients_country.unstack(1)
 
 
 
-<div>
+<div class="dataframe-wrapper"
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1464,7 +1464,7 @@ reg_df[reg_df['test'].apply(regex_filter)]
 
 
 
-<div>
+<div class="dataframe-wrapper"
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;

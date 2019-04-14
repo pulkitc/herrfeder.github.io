@@ -11,10 +11,13 @@ layout: null
 
     }
 
+    .dataframe-wrapper {
+	overflow: scroll;
+	}
+    
     .dataframe {
 	  border-collapse: collapse;
 	  width: 100%;
-	  overflow: scroll;
     }
 
     .dataframe th, td {
