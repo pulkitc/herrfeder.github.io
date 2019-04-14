@@ -11,3 +11,18 @@ layout: null
 
     }
 
+    .dataframe {
+	  border-collapse: collapse;
+	  width: 100%;
+	  overflow: scroll;
+    }
+
+    .dataframe th, td {
+	  text-align: left;
+	  padding: 8px;
+    }
+
+    .dataframe tr:nth-child(even)  {
+          background-color: #f2f2f2;
+    }
+    }
