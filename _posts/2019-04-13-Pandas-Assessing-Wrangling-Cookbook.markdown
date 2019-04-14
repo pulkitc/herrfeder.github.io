@@ -7,6 +7,9 @@ tags: pandas datascience cookbook cheatsheet python
 img: "https://pandas.pydata.org/_static/pandas_logo.png" 
 ---
 
+After finishing my Udacity DataAnalyst Nanodegree I want to preserve my obtained skills using Pandas. Therefore I created a mixture of Cheat Sheet and Cookbook to go over several usecases. Maybe you will find it useful.
+This is Part 2 and is about Assessing and Wrangling in Pandas.
+
 
 ```python
 import pandas as pd
@@ -162,34 +165,6 @@ text-align: right;
 
 
 
-### Return values for column where value starts with specific string
-
-Using List Comprehension and a classical for loop to go over a DataFrame column:
-
-
-```python
-[row for row in wrangling_df['given_name'] if row.startswith('David')]
-```
-
-
-
-
-['David', 'David']
-
-
-
-Using pandas __built-in__ iterrows will run much faster, as it won't call the complete Pandas Object on every loop iteration:
-
-
-```python
-[row[1][2] for row in wrangling_df.iterrows() if row[1][2].startswith('David')]
-```
-
-
-
-
-['David', 'David']
-
 
 
 ### Summarize boolean occurences
@@ -234,11 +209,32 @@ Retrieve categorical values based on occurence limit in dataframe:
 # the result will express the heights, that occured more than thirty times in the dataframe
 ```
 
-
-
-
 [67, 69, 65, 63, 66, 70, 72, 61]
 
+
+
+Return values for column where value starts with specific string. Using List Comprehension and a classical for loop to go over a DataFrame column:
+
+
+```python
+[row for row in wrangling_df['given_name'] if row.startswith('David')]
+```
+
+['David', 'David']
+
+
+
+Using pandas __built-in__ iterrows will run much faster, as it won't call the complete Pandas Object on every loop iteration:
+
+
+```python
+[row[1][2] for row in wrangling_df.iterrows() if row[1][2].startswith('David')]
+```
+
+
+
+
+['David', 'David']
 
 
 ## Wrangling
