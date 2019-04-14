@@ -1,7 +1,9 @@
 ---
 layout: null
 ---
-    #k-toc-card {
+@import url(monokai.css);
+
+   #k-toc-card {
 	font-size: 3px;
     	margin-top: 50px;
     }
