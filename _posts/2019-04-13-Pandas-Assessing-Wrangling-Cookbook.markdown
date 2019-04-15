@@ -8,7 +8,7 @@ img: "https://pandas.pydata.org/_static/pandas_logo.png"
 ---
 
 After finishing my Udacity DataAnalyst Nanodegree I want to preserve my obtained skills using Pandas. Therefore I created a mixture of Cheat Sheet and Cookbook to go over several usecases. Maybe you will find it useful.
-This is Part 2 and is about Assessing and Wrangling in Pandas.
+This is Part 2 and is about Assessing and Wrangling in Pandas. I'm aiming at adding more content if I find something interesting. By The Way, although it's Part 2 it's the first part, as it was the easiest to collect and present the content in a readable way.
 
 
 ```python
@@ -1277,6 +1277,71 @@ wrangling_df.merge(treatment_df,how='outer',left_on=['given_name','surname'],rig
 
 
 It seems that none of the group of keys does match the new Dataframe. Therefore the length of the treatments will be appended and the resulting dataframe will be the sum of both Dataframes.
+
+### Melting
+
+The powerful function from pandas melt, makes it possible to unite multiple categorical columns into one:
+
+
+```python
+melt_df = wrangling_df.melt(id_vars = ['patient_id','surname'], 
+                  value_vars = ['height', 'weight'], 
+                  var_name = 'body_indicator', 
+                  value_name = 'body')
+
+melt_df[melt_df.patient_id == 1]
+```
+
+
+
+
+<div class="dataframe-wrapper">
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>patient_id</th>
+      <th>surname</th>
+      <th>body_indicator</th>
+      <th>body</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Wellish</td>
+      <td>height</td>
+      <td>66.0</td>
+    </tr>
+    <tr>
+      <th>503</th>
+      <td>1</td>
+      <td>Wellish</td>
+      <td>weight</td>
+      <td>121.7</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+It doesn't really make sense to do this transformation, but it shows the purpose of __melt__ in a good way.
+
 
 ### Groupby
 
